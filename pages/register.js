@@ -1,12 +1,12 @@
 import React from "react"
 import Link from "next/link"
 
-function Login() {
+function Register() {
   return (
     <>
       <div className="container">
         <div className="row flex-column flex-md-row vh-100 justify-content-center align-items-center gap-md-5 gap-3">
-          <div className="col col-md-5 left-col">
+          <div className="col col-md-5 left-col d-none d-md-block">
             <img className="img-fluid w-25" src="logo-2.png" alt="logo-2" />
             <h1
               className="fs-1"
@@ -25,6 +25,17 @@ function Login() {
             </p>
             <form>
               <div className="mb-3">
+                <label for="fullname" className="form-label text-muted">
+                  Nama
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="fullname"
+                  placeholder="Masukkan nama panjang"
+                />
+              </div>
+              <div className="mb-3">
                 <label for="email" className="form-label text-muted">
                   Email
                 </label>
@@ -33,6 +44,17 @@ function Login() {
                   className="form-control"
                   id="email"
                   placeholder="Masukkan alamat email"
+                />
+              </div>
+              <div className="mb-3">
+                <label for="telephone_number" className="form-label text-muted">
+                  No. Handphone
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="telephone_number"
+                  placeholder="Masukkan no. handphone"
                 />
               </div>
               <div className="mb-3">
@@ -46,27 +68,30 @@ function Login() {
                   placeholder="Masukkan kata sandi"
                 />
               </div>
-              <p className="text-end">
-                <Link
-                  className="text-decoration-none text-black fw-semibold"
-                  href="#"
-                >
-                  Lupa kata sandi?
-                </Link>
-              </p>
+              <div className="mb-3">
+                <label for="password_confirm" className="form-label text-muted">
+                  Konfirmasi Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password_confirm"
+                  placeholder="Masukkan konfirmasi kata sandi"
+                />
+              </div>
               <div className="d-grid mb-3">
                 <button type="submit" className="btn btn-warning">
-                  Masuk
+                  Daftar
                 </button>
               </div>
             </form>
             <p className="text-center">
-              Anda belum punya akun?{" "}
+              Anda sudah punya akun?{" "}
               <Link
                 className="text-decoration-none text-black fw-semibold"
-                href="/register"
+                href="/login"
               >
-                Daftar Di sini
+                Masuk Di sini
               </Link>
             </p>
           </div>
@@ -76,4 +101,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register

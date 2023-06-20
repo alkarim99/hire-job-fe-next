@@ -10,3 +10,13 @@ $theme-colors: (
 );
 
 @import '/node_modules/bootstrap/scss/bootstrap.scss';
+
+
+body {
+  background-color: #E5E5E5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#profile.nav-link.active {
+  border-color: #5E50A1 !important;
+}

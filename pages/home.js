@@ -11,21 +11,25 @@ export default function Home() {
           <h1 className="container fw-bold py-4 text-white">Top Jobs</h1>
         </div>
         <div className="container py-4">
-          <div class="input-group mb-3 py-4">
+          <div className="input-group mb-3 py-4">
             <input
               type="text"
-              class="form-control py-3"
+              className="form-control py-3"
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <button class="btn btn-primary px-5" type="button" id="button-addon2">
+            <button
+              className="btn btn-primary px-5"
+              type="button"
+              id="button-addon2"
+            >
               Search
             </button>
           </div>
-          <div class="card">
-            <ul class="list-group list-group">
-              <li class="list-group-item py-4">
+          <div className="card">
+            <ul className="list-group list-group">
+              <li className="list-group-item py-4">
                 <div className="row flex-column flex-md-row justify-content-center align-items-center text-center text-md-start gap-3">
                   <div className="col col-md-2 text-center">
                     <img
@@ -70,7 +74,7 @@ export default function Home() {
                   </div>
                 </div>
               </li>
-              <li class="list-group-item py-4">
+              <li className="list-group-item py-4">
                 <div className="row flex-column flex-md-row justify-content-center align-items-center text-center text-md-start gap-3">
                   <div className="col col-md-2 text-center">
                     <img src="pp-harry-styles.png" alt="pp-harry-styles" />
@@ -112,7 +116,7 @@ export default function Home() {
                   </div>
                 </div>
               </li>
-              <li class="list-group-item py-4">
+              <li className="list-group-item py-4">
                 <div className="row flex-column flex-md-row justify-content-center align-items-center text-center text-md-start gap-3">
                   <div className="col col-md-2 text-center">
                     <img src="pp-niall-horan.png" alt="pp-niall-horan" />
