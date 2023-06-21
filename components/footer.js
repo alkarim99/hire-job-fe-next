@@ -9,8 +9,8 @@ function Footer() {
         <div className="row py-3">
           <div className="col col-md-3 text-white">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-              euismod ipsum et dui rhoncus auctor.
+              Talenta terbaik negeri untuk perubahan revolusi 4.0. Platform
+              yang mempertemukan tenaga kerja dengan perusahaan.
             </p>
           </div>
         </div>

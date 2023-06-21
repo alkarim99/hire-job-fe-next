@@ -28,9 +28,11 @@ function Profile() {
               </p>
               <p className="text-muted mb-2">Freelancer</p>
               <p className="text-muted mb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-                Curabitur eu lacus fringilla, vestibulum risus at.
+                Senior Programmer dengan 3+ tahun pengalaman menggunakan
+                JavaScript untuk mengembangkan, menguji dan mengamati aplikasi
+                software perusahaan. Telah mendesain dan mengembangkan lebih
+                dari 5 aplikasi untuk meningkatkan efisiensi dan data management
+                untuk Tokopedia.
               </p>
               <a href="#" className="btn btn-primary btn-lg my-4">
                 Hire
@@ -42,28 +44,21 @@ function Profile() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
-                  Phyton
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Laravel
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Golang
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
                   JavaScript
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
+                  ReactJS
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
+                  ExpressJS
                 </Link>
                 <Link
                   className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
@@ -77,6 +72,13 @@ function Profile() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
+                  Laravel
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
                   HTML
                 </Link>
                 <Link
@@ -84,89 +86,41 @@ function Profile() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
-                  C++
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Kotlin
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Swift
+                  CSS
                 </Link>
               </div>
-              <p className="text-muted mb-3">
-                <img src="mail.png" alt="mail" className="me-3" />{" "}
-                Louistommo@gmail.com
-              </p>
-              <p className="text-muted mb-3">
-                <img src="instagram.png" alt="instagram" className="me-3" />{" "}
-                @Louist91
-              </p>
-              <p className="text-muted mb-3">
-                <img src="github.png" alt="github" className="me-3" />{" "}
-                @Louistommo
-              </p>
-              <p className="text-muted mb-3">
-                <img src="gitlab.png" alt="gitlab" className="me-3" />{" "}
-                @Louistommo91
-              </p>
             </div>
-            <div className="col bg-white rounded-4 p-5" id="profile">
-              <ul className="nav nav-underline mb-3">
-                <li className="nav-item">
-                  <a className="nav-link active fs-5" href="#">
-                    Pengalaman Kerja
-                  </a>
-                </li>
-              </ul>
-              <div className="row">
-                <div className="col">
-                  <img
-                    src="tokopedia-logo.png"
-                    alt="tokopedia-logo"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="col-10">
-                  <h4 className="mb-0 fw-semibold">Engineer</h4>
-                  <p className="fw-light m-0">Tokopedia</p>
-                  <p className="text-muted">
-                    July 2019 - January 2020 6 months
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
-                  </p>
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col">
-                  <img
-                    src="tokopedia-logo.png"
-                    alt="tokopedia-logo"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="col-10">
-                  <h4 className="mb-0 fw-semibold">Web Developer</h4>
-                  <p className="fw-light m-0">Tokopedia</p>
-                  <p className="text-muted">
-                    July 2019 - January 2020 6 months
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
-                  </p>
+            <div className="col" id="profile">
+              <div className="row mb-3">
+                <div className="col bg-white rounded-4 py-5 px-md-5">
+                  <ul className="nav nav-underline mb-3">
+                    <li className="nav-item">
+                      <Link className="nav-link active fs-5" href="#">
+                        Pengalaman Kerja
+                      </Link>
+                    </li>
+                  </ul>
+                  <div className="row">
+                    <div className="col">
+                      <img
+                        src="tokopedia-logo.png"
+                        alt="tokopedia-logo"
+                        className="img-fluid"
+                      />
+                    </div>
+                    <div className="col-10">
+                      <h4 className="mb-0 fw-semibold">Web Developer</h4>
+                      <p className="fw-light m-0">Tokopedia</p>
+                      <p className="text-muted">
+                        January 2019 - January 2023 3 years
+                      </p>
+                      <p>
+                        Berpengalaman menjadi web developer di Tokopedia untuk
+                        membangun aplikasi website dari tokopedia.
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
                 </div>
               </div>
             </div>

@@ -19,10 +19,6 @@ function Register() {
             <h3 className="text-center text-md-start fw-bold">
               Halo, Pewpoeple
             </h3>
-            <p className="text-center text-md-start">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-              euismod ipsum et dui rhoncus auctor.
-            </p>
             <form>
               <div className="mb-3">
                 <label for="fullname" className="form-label text-muted">

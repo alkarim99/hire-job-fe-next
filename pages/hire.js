@@ -24,13 +24,12 @@ function Hire() {
               </p>
               <p className="text-muted mb-2">Freelancer</p>
               <p className="text-muted mb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-                Curabitur eu lacus fringilla, vestibulum risus at.
+                Senior Programmer dengan 3+ tahun pengalaman menggunakan
+                JavaScript untuk mengembangkan, menguji dan mengamati aplikasi
+                software perusahaan. Telah mendesain dan mengembangkan lebih
+                dari 5 aplikasi untuk meningkatkan efisiensi dan data management
+                untuk Tokopedia.
               </p>
-              <a href="#" className="btn btn-primary btn-lg my-4">
-                Hire
-              </a>
               <div className="my-4">
                 <h4 className="fw-bold">Skill</h4>
                 <Link
@@ -38,28 +37,21 @@ function Hire() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
-                  Phyton
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Laravel
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Golang
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
                   JavaScript
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
+                  ReactJS
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
+                  ExpressJS
                 </Link>
                 <Link
                   className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
@@ -73,6 +65,13 @@ function Hire() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
+                  Laravel
+                </Link>
+                <Link
+                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
+                  href="#"
+                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
+                >
                   HTML
                 </Link>
                 <Link
@@ -80,30 +79,12 @@ function Hire() {
                   href="#"
                   style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
                 >
-                  C++
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Kotlin
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Swift
+                  CSS
                 </Link>
               </div>
             </div>
             <div className="col py-5 px-md-5" id="profile">
               <h2 className="fw-bold">Hubungi Louis Tomlinson</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
-              </p>
               <form>
                 <div className="mb-3">
                   <label for="tujuan" className="form-label text-muted">

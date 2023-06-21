@@ -23,21 +23,22 @@ export default function Index() {
         <div className="container">
           <div className="row flex-column-reverse flex-md-row justify-content-between align-items-center vh-100 py-4">
             <div className="col col-md-4 text-center text-md-start">
-              <h1 className="fw-bold">Talenta terbaik negeri untuk perubahan revolusi 4.0</h1>
+              <h1 className="fw-bold">
+                Talenta terbaik negeri untuk perubahan revolusi 4.0
+              </h1>
               <p className="my-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Platform untuk mempertemukan tenaga kerja dengan perusahaan.
               </p>
               <a href="#" className="btn btn-primary btn-lg">
                 Mulai Dari Sekarang
               </a>
-              <a
+              {/* <a
                 href="#"
                 className="btn btn-primary btn-lg"
                 // onClick={handleClick()}
               >
                 Counter :
-              </a>
+              </a> */}
             </div>
             <div className="col col-md-6">
               <img
@@ -49,7 +50,9 @@ export default function Index() {
           </div>
           <div className="row flex-column-reverse flex-md-row-reverse justify-content-between align-items-center vh-100 py-4">
             <div className="col col-md-5 text-center text-md-start">
-              <h2 className="mb-4 fw-bold">Kenapa harus mencari tallent di peworld</h2>
+              <h2 className="mb-4 fw-bold">
+                Kenapa harus mencari tallent di peworld
+              </h2>
               <ul
                 style={{
                   listStyle: "none",
@@ -60,19 +63,19 @@ export default function Index() {
               >
                 <li className="mb-3">
                   <img src="tick1.png" className="me-4" alt="tick1" />
-                  Lorem ipsum dolor sit amet
+                  Dibekali technical skill terupdate
                 </li>
                 <li className="mb-3">
                   <img src="tick1.png" className="me-4" alt="tick1" />
-                  Lorem ipsum dolor sit amet
+                  Kualifikasi talenta terukur
                 </li>
                 <li className="mb-3">
                   <img src="tick1.png" className="me-4" alt="tick1" />
-                  Lorem ipsum dolor sit amet
+                  Growth Mindset Tallent
                 </li>
                 <li className="mb-3">
                   <img src="tick1.png" className="me-4" alt="tick1" />
-                  Lorem ipsum dolor sit amet
+                  Memiliki motivasi tinggi
                 </li>
               </ul>
             </div>
@@ -87,10 +90,7 @@ export default function Index() {
           <div className="row flex-column-reverse flex-md-row justify-content-between align-items-center vh-100 py-4">
             <div className="col col-md-5 text-center text-md-start">
               <h2 className="mb-4 fw-bold">Skill Tallent</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
-              </p>
+              <p>Teknologi terkini yang dimiliki tallent kami</p>
               <div className="row flex-column flex-md-row">
                 <div className="col d-none d-md-block">
                   <ul
@@ -180,8 +180,8 @@ export default function Index() {
                   <h5 className="card-title fw-semibold">Harry Styles</h5>
                   <p className="text-muted">Web Developer</p>
                   <p className="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                    euismod ipsum et dui rhoncus auctor.
+                    Peworld memudahkan kami sebagai tallent dalam mencari
+                    perusahaan yang sesuai dengan kami.
                   </p>
                 </div>
               </div>
@@ -198,7 +198,8 @@ export default function Index() {
                   <h5 className="card-title fw-semibold">Niall Horan</h5>
                   <p className="text-muted">Web Developer</p>
                   <p className="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Peworld menyiapkan kami yang bukan dari background IT
+                    menjadi siap di dunia kerja IT
                   </p>
                 </div>
               </div>
@@ -215,7 +216,7 @@ export default function Index() {
                   <h5 className="card-title fw-semibold">Louis Tomlinson</h5>
                   <p className="text-muted">Web Developer</p>
                   <p className="card-text">
-                    Lorem ipsum dolor sit amet, consectetur.
+                    Ilmu yang disampaikan relevan dengan dunia kerja.
                   </p>
                 </div>
               </div>
@@ -235,7 +236,7 @@ export default function Index() {
         >
           <div className="col">
             <h2 className="m-0 text-white text-center text-md-start">
-              Lorem ipsum dolor sit amet
+              Sudah yakin bergabung dengan kami?
             </h2>
           </div>
           <div className="col text-center text-md-end">
