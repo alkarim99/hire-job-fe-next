@@ -1,7 +1,45 @@
 import React from "react"
 import Link from "next/link"
+import Swal from "sweetalert2"
+
+import { useSelector } from "react-redux"
+import { useRouter } from "next/router"
 
 function Login() {
+  const router = useRouter()
+  const state = useSelector((state) => state)
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
+
+  const user_data = {
+    email: "user-test@gmail.com",
+    password: "pass123",
+  }
+
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "True") {
+      router.push("/profile")
+    }
+  })
+
+  const handleLogin = () => {
+    if (email == user_data.email && password == user_data.password) {
+      localStorage.setItem("auth", "True")
+      Swal.fire({
+        title: "Login Success!",
+        text: "Login Success! Redirect to App...",
+        icon: "success",
+      })
+      router.push("/profile")
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Please check your email and password!",
+        icon: "error",
+      })
+    }
+  }
+
   return (
     <>
       <div className="container">
@@ -19,7 +57,7 @@ function Login() {
             <h3 className="text-center text-md-start fw-bold">
               Halo, Pewpoeple
             </h3>
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
               <div className="mb-3">
                 <label for="email" className="form-label text-muted">
                   Email
@@ -29,6 +67,7 @@ function Login() {
                   className="form-control"
                   id="email"
                   placeholder="Masukkan alamat email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -40,6 +79,7 @@ function Login() {
                   className="form-control"
                   id="password"
                   placeholder="Masukkan kata sandi"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <p className="text-end">
@@ -51,11 +91,20 @@ function Login() {
                 </Link>
               </p>
               <div className="d-grid mb-3">
-                <button type="submit" className="btn btn-warning">
+                <button
+                  type="submit"
+                  className="btn btn-warning"
+                  onClick={handleLogin}
+                >
                   Masuk
                 </button>
               </div>
             </form>
+            {/* <div className="d-grid mb-3">
+              <button className="btn btn-warning">
+                Counter : {state.counterSlice.value}
+              </button>
+            </div> */}
             <p className="text-center">
               Anda belum punya akun?{" "}
               <Link

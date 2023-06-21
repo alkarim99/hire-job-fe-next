@@ -68,9 +68,9 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="col">
-                    <a className="btn btn-primary btn-lg" href="#">
+                    <Link className="btn btn-primary btn-lg" href="/profile">
                       Lihat Profile
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </li>

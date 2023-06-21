@@ -1,18 +1,17 @@
 import { useSelector, useDispatch } from "react-redux"
 import { decrement, increment } from "@/store/reducers/counterSlice"
+import Link from "next/link"
 
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 
 export default function Index() {
-  // const count = useSelector((state) => state.counterSlice.value)
-  // const dispatch = useDispatch()
+  const state = useSelector((state) => state)
+  const dispatch = useDispatch()
 
-  // console.log(count)
-
-  // const handleClick = () => {
-  //   dispatch(increment())
-  // }
+  const handleCounter = () => {
+    dispatch(increment())
+  }
 
   // throw new Error("Error api")
 
@@ -29,16 +28,15 @@ export default function Index() {
               <p className="my-4">
                 Platform untuk mempertemukan tenaga kerja dengan perusahaan.
               </p>
-              <a href="#" className="btn btn-primary btn-lg">
+              <Link href="/home" className="btn btn-primary btn-lg">
                 Mulai Dari Sekarang
-              </a>
-              {/* <a
-                href="#"
+              </Link>
+              {/* <button
                 className="btn btn-primary btn-lg"
-                // onClick={handleClick()}
+                onClick={handleCounter}
               >
-                Counter :
-              </a> */}
+                Counter : {state.counterSlice.value}
+              </button> */}
             </div>
             <div className="col col-md-6">
               <img
@@ -240,12 +238,12 @@ export default function Index() {
             </h2>
           </div>
           <div className="col text-center text-md-end">
-            <a
-              href="#"
+            <Link
+              href="/home"
               className="btn btn-primary btn-lg bg-light text-primary fw-bold p-3"
             >
               Mulai Dari Sekarang
-            </a>
+            </Link>
           </div>
         </div>
       </div>

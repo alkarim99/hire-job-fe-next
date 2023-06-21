@@ -3,8 +3,17 @@ import Footer from "@/components/footer"
 import Link from "next/link"
 
 import React from "react"
+import { useRouter } from "next/router"
 
 function editProfile() {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "False") {
+      router.push("/login")
+    }
+  }, [])
+
   return (
     <>
       <main className="mb-5 pb-5">

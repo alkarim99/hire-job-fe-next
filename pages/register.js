@@ -1,7 +1,16 @@
 import React from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 function Register() {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "True") {
+      router.push("/profile")
+    }
+  }, [])
+
   return (
     <>
       <div className="container">

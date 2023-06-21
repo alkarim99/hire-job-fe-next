@@ -28,7 +28,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <div className="d-flex gap-2 flex-column flex-lg-row mt-4 mt-lg-0">
-            {auth ? (
+            {auth == "True" ? (
               <>
                 <Link className="btn btn-transparent" key={1} href="#">
                   <img src="bell.png" />

@@ -1,10 +1,19 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 import React from "react"
 
 function Hire() {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "False") {
+      router.push("/login")
+    }
+  }, [])
+
   return (
     <>
       <main className="mb-5 pb-5">

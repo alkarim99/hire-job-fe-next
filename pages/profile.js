@@ -1,10 +1,18 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from "next/link"
-
+import { useRouter } from "next/router"
 import React from "react"
 
 function Profile() {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "False") {
+      router.push("/login")
+    }
+  }, [])
+
   return (
     <>
       <main className="mb-5 pb-5">
@@ -34,9 +42,9 @@ function Profile() {
                 dari 5 aplikasi untuk meningkatkan efisiensi dan data management
                 untuk Tokopedia.
               </p>
-              <a href="#" className="btn btn-primary btn-lg my-4">
+              <Link href="/hire" className="btn btn-primary btn-lg my-4">
                 Hire
-              </a>
+              </Link>
               <div className="my-4">
                 <h4 className="fw-bold">Skill</h4>
                 <Link
