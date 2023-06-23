@@ -7,6 +7,7 @@ import Link from "next/link"
 export default function Home() {
   const users = [
     {
+      id: "01",
       image: "pp-louis-tomlinson.png",
       fullname: "Louis Tomlinson",
       job: "Web Developer",
@@ -14,6 +15,7 @@ export default function Home() {
       skills: ["PHP", "HTML", "JavaScript"],
     },
     {
+      id: "02",
       image: "pp-harry-styles.png",
       fullname: "Harry Styles",
       job: "Mobile Developer",
@@ -21,6 +23,7 @@ export default function Home() {
       skills: ["React Native", "Java", "PostgreSQL"],
     },
     {
+      id: "03",
       image: "pp-niall-horan.png",
       fullname: "Niall Horan",
       job: "Full Stack Developer",
@@ -55,7 +58,7 @@ export default function Home() {
           <div className="card">
             <ul className="list-group">
               {users.map((user) => {
-                return <Listjob user={user} />
+                return <Listjob user={user} key={user.id} />
               })}
             </ul>
           </div>
