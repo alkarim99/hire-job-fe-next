@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from "next/link"
+import Tagskill from "@/components/tagskill"
 import { useRouter } from "next/router"
 import React from "react"
 
@@ -30,12 +31,14 @@ function Profile() {
                 alt="pp-louis-tomlinson"
               />
               <h4 className="fw-bold">Louis Tomlinson</h4>
-              <p>Web Developer</p>
-              <p className="text-muted mb-2">
+              <p>
+                <img src="suitcase.png" alt="suitcase" width={"17px"} /> Web
+                Developer
+              </p>
+              <p className="mb-2">
                 <img src="map.png" alt="map" /> Indonesia
               </p>
-              <p className="text-muted mb-2">Freelancer</p>
-              <p className="text-muted mb-2">
+              <p className="mb-2">
                 Senior Programmer dengan 3+ tahun pengalaman menggunakan
                 JavaScript untuk mengembangkan, menguji dan mengamati aplikasi
                 software perusahaan. Telah mendesain dan mengembangkan lebih
@@ -47,55 +50,7 @@ function Profile() {
               </Link>
               <div className="my-4">
                 <h4 className="fw-bold">Skill</h4>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  JavaScript
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  ReactJS
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  ExpressJS
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  PHP
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  Laravel
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  HTML
-                </Link>
-                <Link
-                  className="btn btn-outline-warning text-white me-2 fw-semibold mb-2"
-                  href="#"
-                  style={{ backgroundColor: "rgba(251, 176, 23, 0.6)" }}
-                >
-                  CSS
-                </Link>
+                <Tagskill skillName="JavaScript" />
               </div>
             </div>
             <div className="col" id="profile">
