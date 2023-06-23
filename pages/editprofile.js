@@ -1,17 +1,16 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import Link from "next/link"
 
 import React from "react"
 import { useRouter } from "next/router"
 
-function editprofile() {
-  // const router = useRouter()
-  // React.useEffect(() => {
-  //   if (localStorage.getItem("auth") == "False") {
-  //     router.push("/login")
-  //   }
-  // }, [])
+function Editprofile() {
+  const router = useRouter()
+  React.useEffect(() => {
+    if (localStorage.getItem("auth") == "False") {
+      router.push("/login")
+    }
+  }, [])
   return (
     <>
       <main className="mb-5 pb-5">
@@ -212,4 +211,4 @@ function editprofile() {
   )
 }
 
-export default editprofile
+export default Editprofile

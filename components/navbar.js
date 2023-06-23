@@ -30,10 +30,10 @@ function Navbar() {
           <div className="d-flex gap-2 flex-column flex-lg-row mt-4 mt-lg-0">
             {auth == "True" ? (
               <>
-                <Link className="btn btn-transparent" key={1} href="#">
+                <Link className="btn btn-transparent" key={1} href="">
                   <img src="bell.png" />
                 </Link>
-                <Link className="btn btn-transparent" href="#">
+                <Link className="btn btn-transparent" href="">
                   <img src="mail.png" />
                 </Link>
                 <Link className="btn btn-transparent" href="/profile">

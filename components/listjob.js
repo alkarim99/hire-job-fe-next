@@ -21,8 +21,8 @@ function Listjob(props) {
               <img src="map.png" alt="map" /> {user.location}
             </p>
             <div className="d-inline">
-              {user.skills.map((skill) => {
-                return <Tagskill skillName={skill} />
+              {user.skills.map((skill, index) => {
+                return <Tagskill skillName={skill} key={index} />
               })}
             </div>
           </div>

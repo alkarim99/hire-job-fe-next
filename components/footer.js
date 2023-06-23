@@ -9,8 +9,8 @@ function Footer() {
         <div className="row py-3">
           <div className="col col-md-3 text-white">
             <p>
-              Talenta terbaik negeri untuk perubahan revolusi 4.0. Platform
-              yang mempertemukan tenaga kerja dengan perusahaan.
+              Talenta terbaik negeri untuk perubahan revolusi 4.0. Platform yang
+              mempertemukan tenaga kerja dengan perusahaan.
             </p>
           </div>
         </div>
@@ -20,10 +20,10 @@ function Footer() {
             <p>2023 Pewworld. All right reserved</p>
           </div>
           <div className="col text-center text-md-end">
-            <Link href="#" className="text-decoration-none text-white me-5">
+            <Link href="" className="text-decoration-none text-white me-5">
               Telepon
             </Link>
-            <Link href="#" className="text-decoration-none text-white me-md-5">
+            <Link href="" className="text-decoration-none text-white me-md-5">
               Email
             </Link>
           </div>
