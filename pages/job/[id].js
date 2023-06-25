@@ -5,6 +5,7 @@ import Tagskill from "@/components/tagskill"
 import Listexperience from "@/components/listexperience"
 import { useRouter } from "next/router"
 import React from "react"
+import axios from "axios"
 
 function Profile() {
   const router = useRouter()
@@ -39,16 +40,16 @@ function Profile() {
             <div className="col col-md-4 bg-white d-flex justify-content-center flex-column p-4 rounded-4">
               <img
                 className="img-fluid w-50 align-self-center my-4"
-                src="pp-louis-tomlinson.png"
+                src="../pp-louis-tomlinson.png"
                 alt="pp-louis-tomlinson"
               />
-              <h4 className="fw-bold">Louis Tomlinson</h4>
+              <h4 className="fw-bold">Louis Tomlinson {router?.query?.id}</h4>
               <p>
-                <img src="suitcase.png" alt="suitcase" width={"17px"} /> Web
+                <img src="../suitcase.png" alt="suitcase" width={"17px"} /> Web
                 Developer
               </p>
               <p className="mb-2">
-                <img src="map.png" alt="map" /> Indonesia
+                <img src="../map.png" alt="map" /> Indonesia
               </p>
               <p className="mb-2">
                 Senior Programmer dengan 3+ tahun pengalaman menggunakan
@@ -88,6 +89,66 @@ function Profile() {
       <Footer />
     </>
   )
+}
+
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const {
+    data: {
+      data: { rows },
+    },
+  } = await axios.get("https://hire-job.onrender.com/v1/job")
+  console.log(rows)
+  //   const posts = await res.json()
+  //   const users = [
+  //     {
+  //       id: "1",
+  //       image: "pp-louis-tomlinson.png",
+  //       fullname: "Louis Tomlinson",
+  //       job: "Web Developer",
+  //       location: "Indonesia",
+  //       skills: ["PHP", "HTML", "JavaScript"],
+  //     },
+  //     {
+  //       id: "2",
+  //       image: "pp-harry-styles.png",
+  //       fullname: "Harry Styles",
+  //       job: "Mobile Developer",
+  //       location: "Indonesia",
+  //       skills: ["React Native", "Java", "PostgreSQL"],
+  //     },
+  //     {
+  //       id: "3",
+  //       image: "pp-niall-horan.png",
+  //       fullname: "Niall Horan",
+  //       job: "Full Stack Developer",
+  //       location: "Indonesia",
+  //       skills: ["ReactJS", "NextJS", "NodeJS"],
+  //     },
+  //   ]
+  const users = [1, 2, 3]
+
+  // Get the paths we want to pre-render based on posts
+  const paths = rows.map((row) => ({
+    params: { id: row.id.toString() },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: 'blocking' }
+}
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  //   const res = await fetch("https://.../posts")
+  //   const posts = await res.json()
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {},
+    revalidate: 10,
+  }
 }
 
 export default Profile

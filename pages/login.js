@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import Swal from "sweetalert2"
+import axios from "axios"
 
 import { useSelector } from "react-redux"
 import { useRouter } from "next/router"
@@ -11,11 +12,6 @@ function Login() {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
 
-  const user_data = {
-    email: "user-test@gmail.com",
-    password: "pass123",
-  }
-
   React.useEffect(() => {
     if (localStorage.getItem("auth") == "True") {
       router.push("/profile")
@@ -23,21 +19,27 @@ function Login() {
   })
 
   const handleLogin = () => {
-    if (email == user_data.email && password == user_data.password) {
-      localStorage.setItem("auth", "True")
-      Swal.fire({
-        title: "Login Success!",
-        text: "Login Success! Redirect to App...",
-        icon: "success",
+    axios
+      .post("https://hire-job.onrender.com/v1/auth/login", {
+        email,
+        password,
       })
-      router.push("/profile")
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: "Please check your email and password!",
-        icon: "error",
+      .then(() => {
+        Swal.fire({
+          title: "Login Success!",
+          text: "Login Success! Redirect to App...",
+          icon: "success",
+        })
+        localStorage.setItem("auth", "True")
+        router.push("/profile")
       })
-    }
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: error?.message ?? "Something wrong in our App!",
+          icon: "error",
+        })
+      })
   }
 
   return (

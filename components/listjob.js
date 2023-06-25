@@ -27,7 +27,7 @@ function Listjob(props) {
             </div>
           </div>
           <div className="col col-md-2">
-            <Link className="btn btn-primary btn-lg" href="/profile">
+            <Link className="btn btn-primary btn-lg" href={`/job/${user.id}`}>
               Lihat Profile
             </Link>
           </div>

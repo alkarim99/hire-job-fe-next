@@ -11,8 +11,12 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-white py-4">
       <div className="container container-fluid align-item-center px-3">
-        <Link className="navbar-brand text-primary fw-bolder m-0" href="./">
-          <img src="logo.png" className="img-fluid w-75 m-0 p-0" alt="logo" />
+        <Link className="navbar-brand text-primary fw-bolder m-0" href="./home">
+          <img
+            src="../logo.png"
+            className="img-fluid w-75 m-0 p-0"
+            alt="logo"
+          />
         </Link>
         <button
           className="navbar-toggler"
@@ -31,13 +35,13 @@ function Navbar() {
             {auth == "True" ? (
               <>
                 <Link className="btn btn-transparent" key={1} href="">
-                  <img src="bell.png" />
+                  <img src="../bell.png" alt="bell" />
                 </Link>
                 <Link className="btn btn-transparent" href="">
-                  <img src="mail.png" />
+                  <img src="../mail.png" alt="mail" />
                 </Link>
                 <Link className="btn btn-transparent" href="/profile">
-                  <img src="user-icon.png" />
+                  <img src="../user-icon.png" alt="user-icon" />
                 </Link>
               </>
             ) : (

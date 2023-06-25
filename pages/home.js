@@ -7,7 +7,7 @@ import Link from "next/link"
 export default function Home() {
   const users = [
     {
-      id: "01",
+      id: "1",
       image: "pp-louis-tomlinson.png",
       fullname: "Louis Tomlinson",
       job: "Web Developer",
@@ -15,7 +15,7 @@ export default function Home() {
       skills: ["PHP", "HTML", "JavaScript"],
     },
     {
-      id: "02",
+      id: "2",
       image: "pp-harry-styles.png",
       fullname: "Harry Styles",
       job: "Mobile Developer",
@@ -23,7 +23,7 @@ export default function Home() {
       skills: ["React Native", "Java", "PostgreSQL"],
     },
     {
-      id: "03",
+      id: "3",
       image: "pp-niall-horan.png",
       fullname: "Niall Horan",
       job: "Full Stack Developer",
@@ -31,6 +31,7 @@ export default function Home() {
       skills: ["ReactJS", "NextJS", "NodeJS"],
     },
   ]
+  
   return (
     <>
       <main className="mb-5 pb-5">
