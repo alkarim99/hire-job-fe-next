@@ -5,14 +5,30 @@ import Head from "next/head"
 import { store } from "@/store"
 import { Provider } from "react-redux"
 import Script from "next/script"
+import { useSelector } from "react-redux"
+import axios from "axios"
 
 import "styles/scss/global.scss"
 import "styles/scss/auth.scss"
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+  // const state = useSelector((state) => state)
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js")
   }, [])
+  axios.interceptors.request.use(
+    (config) => {
+      if (localStorage.getItem("token")) {
+        config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+          "token"
+        )}`
+      }
+      return config
+    },
+    (error) => {
+      Promise.reject(error)
+    }
+  )
   return (
     <>
       <Script
@@ -42,3 +58,4 @@ export default function App({ Component, pageProps }) {
     </>
   )
 }
+export default App

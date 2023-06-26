@@ -12,7 +12,7 @@ export default function Index() {
   const handleCounter = () => {
     dispatch(increment())
   }
-
+  console.log(state.authSlice.userData.token)
   // throw new Error("Error api")
 
   return (

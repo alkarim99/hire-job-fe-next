@@ -3,12 +3,14 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import axios from "axios"
 import Swal from "sweetalert2"
+import { useSelector } from "react-redux"
 
 function Register() {
   const router = useRouter()
+  const state = useSelector((state) => state)
 
   React.useEffect(() => {
-    if (localStorage.getItem("auth") == "True") {
+    if (Object.keys(state.authSlice.userData).length != 0) {
       router.push("/profile")
     }
   }, [])
@@ -38,8 +40,8 @@ function Register() {
             text: "Registration Success! Please Login",
             icon: "success",
           }).then(() => {
-            navigate("/login")
-            // router.push("/profile")
+            // navigate("/login")
+            router.push("/login")
           })
         })
         .catch((error) => {
@@ -64,7 +66,9 @@ function Register() {
       <div className="container">
         <div className="row py-3 flex-column flex-md-row vh-100 justify-content-center align-items-center gap-md-5 gap-3">
           <div className="col col-md-5 left-col d-none d-md-block">
-            <img className="img-fluid w-25" src="logo-2.png" alt="logo-2" />
+            <Link href="/">
+              <img className="img-fluid w-25" src="logo-2.png" alt="logo-2" />
+            </Link>
             <h1
               className="fs-1"
               style={{ position: "relative", top: "20%", width: "93%" }}
