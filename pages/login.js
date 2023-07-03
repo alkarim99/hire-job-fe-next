@@ -37,7 +37,6 @@ function Login() {
         router.push("/profile")
       })
       .catch((error) => {
-        console.log(error)
         Swal.fire({
           title: "Error!",
           text:
@@ -109,11 +108,6 @@ function Login() {
                 </button>
               </div>
             </form>
-            {/* <div className="d-grid mb-3">
-              <button className="btn btn-warning">
-                Counter : {state.counterSlice.value}
-              </button>
-            </div> */}
             <p className="text-center">
               Anda belum punya akun?{" "}
               <Link

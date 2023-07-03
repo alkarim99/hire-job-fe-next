@@ -4,10 +4,12 @@ import { useSelector } from "react-redux"
 
 function Navbar() {
   const state = useSelector((state) => state)
+  const [lengthData, setLengthData] = React.useState("")
   const [userData, setUserData] = React.useState("")
 
   React.useEffect(() => {
-    setUserData(Object.keys(state.authSlice.userData).length)
+    setLengthData(Object.keys(state?.authSlice?.userData).length)
+    setUserData(state?.authSlice?.userData)
   })
 
   return (
@@ -34,7 +36,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <div className="d-flex gap-2 flex-column flex-lg-row mt-4 align-items-center mt-lg-0">
-            {userData != 0 ? (
+            {lengthData != 0 ? (
               <>
                 <Link className="btn btn-transparent" key={1} href="">
                   <img src="../bell.png" alt="bell" />
@@ -52,7 +54,12 @@ function Navbar() {
                   Logout
                 </Link>
                 <Link className="btn btn-transparent" href="/profile">
-                  <img src="../user-icon.png" alt="user-icon" />
+                  <img
+                    src={userData.photo}
+                    className="img-fluid rounded-circle"
+                    alt="user-pp"
+                    style={{ width: "3vw" }}
+                  />
                 </Link>
               </>
             ) : (

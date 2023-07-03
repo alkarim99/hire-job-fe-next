@@ -2,10 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { useEffect } from "react"
 import Head from "next/head"
 
-import { store } from "@/store"
+import { persistor, store } from "@/store"
 import { Provider } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
 import Script from "next/script"
-import { useSelector } from "react-redux"
 import axios from "axios"
 
 import "styles/scss/global.scss"
@@ -53,7 +53,9 @@ function App({ Component, pageProps }) {
         <title>Hire Job App</title>
       </Head>
       <Provider store={store}>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
         <Component {...pageProps} />
+        {/* </PersistGate> */}
       </Provider>
     </>
   )

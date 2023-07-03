@@ -10,6 +10,7 @@ import Swal from "sweetalert2"
 
 import { addAuth } from "@/store/reducers/authSlice"
 import Tagskill from "@/components/tagskill"
+import FormData from "form-data"
 
 function Editprofile() {
   const router = useRouter()
@@ -53,6 +54,7 @@ function Editprofile() {
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
             dispatch(addAuth(response?.data?.data))
+            setUserData(response?.data?.data)
           })
       })
       .catch((error) => {
@@ -74,7 +76,7 @@ function Editprofile() {
 
   const [skill, setSkill] = React.useState("")
 
-  const handleUpdateSkill = () => {
+  const handleAddSkill = () => {
     const skills = new Array(skill)
     axios
       .post("https://hire-job.onrender.com/v1/skills", {
@@ -90,7 +92,123 @@ function Editprofile() {
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
             dispatch(addAuth(response?.data?.data))
+            setUserData(response?.data?.data)
           })
+      })
+      .catch((error) => {
+        let text = "Something wrong in our App!"
+        const errors = error?.response?.data?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
+        Swal.fire({
+          title: "Error!",
+          text: text,
+          icon: "error",
+        })
+      })
+  }
+
+  const [jobExperiencePosition, setJobExperiencePosition] = React.useState("")
+  const [jobExperienceCompany, setJobExperienceCompany] = React.useState("")
+  const [jobExperienceDate, setJobExperienceDate] = React.useState("")
+  const [jobExperienceDescription, setJobExperienceDescription] =
+    React.useState("")
+  const [jobExperiencePhoto, setJobExperiencePhoto] = React.useState("")
+
+  const handleAddJobExperience = () => {
+    const arrayDate = jobExperienceDate.split("-")
+    const uploadDate = arrayDate[1].concat("-", arrayDate[0])
+    const payload = {
+      position: jobExperiencePosition,
+      company: jobExperienceCompany,
+      date: uploadDate,
+      description: jobExperienceDescription,
+      photo: jobExperiencePhoto,
+    }
+    const formData = new FormData()
+    formData.append("position", payload.position)
+    formData.append("company", payload.company)
+    formData.append("date", payload.date)
+    formData.append("description", payload.description)
+    formData.append("photo", payload.photo)
+    axios
+      .post("https://hire-job.onrender.com/v1/job", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Add New Job Experience Success!",
+          text: "Add New Job Experience Success!",
+          icon: "success",
+        })
+        axios
+          .get("https://hire-job.onrender.com/v1/profile")
+          .then((response) => {
+            dispatch(addAuth(response?.data?.data))
+            setUserData(response?.data?.data)
+          })
+      })
+      .catch((error) => {
+        let text = "Something wrong in our App!"
+        const errors = error?.response?.data?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
+        Swal.fire({
+          title: "Error!",
+          text: text,
+          icon: "error",
+        })
+      })
+  }
+
+  const [profilePicture, setProfilePicture] = React.useState("")
+
+  const handleUpdateProfilePicture = () => {
+    const formData = new FormData()
+    formData.append("photo", profilePicture)
+    axios
+      .patch("https://hire-job.onrender.com/v1/profile/picture", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Update Photo Success!",
+          text: "Update Photo Success!",
+          icon: "success",
+        })
+        axios
+          .get("https://hire-job.onrender.com/v1/profile")
+          .then((response) => {
+            dispatch(addAuth(response?.data?.data))
+            setUserData(response?.data?.data)
+          })
+      })
+      .catch((error) => {
+        let text = "Something wrong in our App!"
+        const errors = error?.response?.data?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
+        Swal.fire({
+          title: "Error!",
+          text: text,
+          icon: "error",
+        })
       })
   }
 
@@ -108,9 +226,9 @@ function Editprofile() {
               <div className="row mb-3">
                 <div className="col bg-white d-flex justify-content-center align-items-center align-items-md-start flex-column p-4 rounded-4">
                   <img
-                    className="img-fluid w-50 align-self-center my-4"
-                    src="pp-louis-tomlinson.png"
-                    alt="pp-louis-tomlinson"
+                    className="img-fluid w-50 align-self-center my-4 rounded-circle"
+                    src={userData?.photo}
+                    alt="pp"
                   />
                   <h4 className="fw-bold">{userData?.fullname}</h4>
                   <p>
@@ -124,7 +242,7 @@ function Editprofile() {
                     ) : (
                       <span className="text-danger fw-bold">
                         {" "}
-                        Edit Profile untuk Menambahkan Domisili
+                        Edit Profile to Add Domicile
                       </span>
                     )}
                   </p>
@@ -135,19 +253,19 @@ function Editprofile() {
                   className="btn btn-primary"
                   onClick={handleUpdateProfile}
                 >
-                  Simpan
+                  Save
                 </button>
               </div>
               <div className="row mb-3">
                 <Link href="/profile" className="btn btn-light">
-                  Kembali
+                  Back
                 </Link>
               </div>
             </div>
             <div className="col" id="profile">
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
-                  <h4>Data diri</h4>
+                  <h4>Profile</h4>
                   <hr />
                   <form
                     onSubmit={(e) => {
@@ -216,7 +334,7 @@ function Editprofile() {
                     </div>
                     <div className="mb-3">
                       <label for="company" className="form-label text-muted">
-                        Perusahaan
+                        Company
                       </label>
                       <input
                         type="text"
@@ -231,7 +349,7 @@ function Editprofile() {
                     </div>
                     <div class="mb-3">
                       <label for="description" class="form-label text-muted">
-                        Deskripsi Singkat
+                        Description
                       </label>
                       <textarea
                         class="form-control"
@@ -248,15 +366,55 @@ function Editprofile() {
               </div>
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
+                  <h4>Profile Picture</h4>
+                  <hr />
+                  <img
+                    className="img-fluid rounded-circle"
+                    src={userData.photo}
+                    alt="pp"
+                    style={{ width: "10vw" }}
+                  />
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                    }}
+                  >
+                    <div className="row d-flex flex-column flex-md-row gap-2 mt-3">
+                      <div className="col">
+                        <input
+                          class="form-control"
+                          type="file"
+                          id="photo"
+                          onChange={(e) => {
+                            setProfilePicture(e.target.files[0])
+                          }}
+                        />
+                      </div>
+                      <div className="col-2">
+                        <button
+                          className="btn btn-warning"
+                          onClick={handleUpdateProfilePicture}
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <div className="col bg-white rounded-4 py-5 px-md-5">
                   <h4>Skill</h4>
                   <hr />
                   {userData?.skills?.length != 0 ? (
                     userData?.skills?.map((skill, index) => {
-                      return <Tagskill skillName={skill} key={index} />
+                      return (
+                        <Tagskill skillName={skill} key={index} index={index} />
+                      )
                     })
                   ) : (
                     <div class="alert alert-warning" role="alert">
-                      Tambah Skill Di Sini
+                      Add skill here
                     </div>
                   )}
                   <form
@@ -279,9 +437,9 @@ function Editprofile() {
                       <div className="col-2">
                         <button
                           className="btn btn-warning"
-                          onClick={handleUpdateSkill}
+                          onClick={handleAddSkill}
                         >
-                          Simpan
+                          Save
                         </button>
                       </div>
                     </div>
@@ -290,63 +448,89 @@ function Editprofile() {
               </div>
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
-                  <h4>Pengalaman Kerja</h4>
+                  <h4>Job Experience</h4>
                   <hr />
-                  <form>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                    }}
+                  >
                     <div className="mb-3 ">
-                      <label for="posisi" class="form-label text-muted">
-                        Posisi
+                      <label for="position" class="form-label text-muted">
+                        Position
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="posisi"
-                        placeholder="Posisi"
+                        id="position"
+                        placeholder="Position"
+                        onChange={(e) => {
+                          setJobExperiencePosition(e.target.value)
+                        }}
                       />
                     </div>
                     <div className="row mb-3 ">
                       <div className="col">
-                        <label
-                          for="nama_perusahaan"
-                          class="form-label text-muted"
-                        >
-                          Nama Perusahaan
+                        <label for="company" class="form-label text-muted">
+                          Company
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="nama_perusahaan"
-                          placeholder="Nama Perusahaan"
+                          id="company"
+                          placeholder="Company"
+                          onChange={(e) => {
+                            setJobExperienceCompany(e.target.value)
+                          }}
                         />
                       </div>
                       <div className="col">
-                        <label for="bulan_tahun" class="form-label text-muted">
-                          Bulan / Tahun
+                        <label for="date" class="form-label text-muted">
+                          Date
                         </label>
                         <input
                           type="date"
                           className="form-control"
-                          id="bulan_tahun"
+                          id="date"
+                          onChange={(e) => {
+                            setJobExperienceDate(e.target.value)
+                          }}
                         />
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label
-                        for="deskripsi_singkat"
-                        class="form-label text-muted"
-                      >
-                        Deskripsi Singkat
+                      <label for="description" class="form-label text-muted">
+                        Description
                       </label>
                       <textarea
                         class="form-control"
-                        id="deskripsi_singkat"
+                        id="description"
                         rows="3"
+                        onChange={(e) => {
+                          setJobExperienceDescription(e.target.value)
+                        }}
                       ></textarea>
                     </div>
+                    <div class="mb-3">
+                      <label for="photo" class="form-label">
+                        Photo
+                      </label>
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="photo"
+                        onChange={(e) => {
+                          setJobExperiencePhoto(e.target.files[0])
+                        }}
+                      />
+                    </div>
                     <hr />
-                    <a href="#" className="d-grid btn btn-outline-warning">
-                      Tambah Pengalaman Kerja
-                    </a>
+                    <button
+                      className="d-grid btn btn-outline-warning"
+                      onClick={handleAddJobExperience}
+                    >
+                      Add Job Experience
+                    </button>
                   </form>
                 </div>
               </div>

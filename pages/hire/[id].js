@@ -21,13 +21,22 @@ function Hire() {
     if (Object.keys(state?.authSlice?.userData).length == 0) {
       router.push("/login")
     } else {
-      setProfile(state?.authSlice?.userData)
+      const id = parseInt(router?.query?.id)
+      axios.get("https://hire-job.onrender.com/v1/job/all").then((response) => {
+        const data = response?.data?.data
+        for (let i = 0; i < data?.length; i++) {
+          if (data[i].id === id) {
+            setProfile(data[i])
+            return
+          }
+        }
+      })
     }
   }, [])
 
   const handleContact = () => {
     axios
-      .post(`https://hire-job.onrender.com/v1/contact/${profile.id}`, {
+      .post(`https://hire-job.onrender.com/v1/contact/${profile?.id}`, {
         subject,
         description,
       })
@@ -37,6 +46,7 @@ function Hire() {
           text: "Contact Success!",
           icon: "success",
         })
+        router.push(`/job/${profile?.id}`)
       })
       .catch((error) => {
         let text = "Something wrong in our App!"
@@ -69,11 +79,11 @@ function Hire() {
               />
               <h4 className="fw-bold">{profile?.fullname}</h4>
               <p>
-                <img src="suitcase.png" alt="suitcase" width={"17px"} />{" "}
+                <img src="../suitcase.png" alt="suitcase" width={"17px"} />{" "}
                 {profile?.job_title}
               </p>
               <p className="mb-2">
-                <img src="map.png" alt="map" />{" "}
+                <img src="../map.png" alt="map" />{" "}
                 {profile?.domicile != "-" ? (
                   profile?.domicile
                 ) : (

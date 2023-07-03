@@ -1,11 +1,13 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+
+import React from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useSelector } from "react-redux"
+
 import Tagskill from "@/components/tagskill"
 import Listexperience from "@/components/listexperience"
-import { useRouter } from "next/router"
-import React from "react"
-import { useSelector } from "react-redux"
 
 function Profile() {
   const router = useRouter()
@@ -32,9 +34,9 @@ function Profile() {
           <div className="row px-3 px-md-5 gap-5">
             <div className="col col-md-4 bg-white d-flex justify-content-center flex-column p-4 rounded-4">
               <img
-                className="img-fluid w-50 align-self-center my-4"
-                src="pp-louis-tomlinson.png"
-                alt="pp-louis-tomlinson"
+                className="img-fluid w-50 align-self-center my-4 rounded-circle"
+                src={userData?.photo}
+                alt="pp"
               />
               <h4 className="fw-bold">{userData?.fullname}</h4>
               <p>
@@ -63,11 +65,16 @@ function Profile() {
               <Link href="/editprofile" className="btn btn-primary btn-lg my-4">
                 Edit Profile
               </Link>
+              {/* <Link href="/hire" className="btn btn-primary btn-lg my-4">
+                Hire
+              </Link> */}
               <div className="my-4">
                 <h4 className="fw-bold">Skill</h4>
                 {userData?.skills?.length != 0 ? (
                   userData?.skills?.map((skill, index) => {
-                    return <Tagskill skillName={skill} key={index} />
+                    return (
+                      <Tagskill skillName={skill} key={index} index={index} />
+                    )
                   })
                 ) : (
                   <div class="alert alert-warning" role="alert">
@@ -88,14 +95,22 @@ function Profile() {
                   </ul>
                   {userData?.job_history?.length != 0 ? (
                     userData?.job_history?.map((item, index) => {
-                      return <Listexperience experience={item} key={index} />
+                      return (
+                        <>
+                          <Listexperience
+                            userId={userData?.id}
+                            experience={item}
+                            key={index}
+                          />
+                          <hr />
+                        </>
+                      )
                     })
                   ) : (
                     <div class="alert alert-warning" role="alert">
                       Edit Profile untuk Menambahkan Pengalaman Kerja
                     </div>
                   )}
-                  <hr />
                 </div>
               </div>
             </div>

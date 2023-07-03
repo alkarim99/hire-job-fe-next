@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="bg-primary">
       <div className="container mt-4 py-5 text-center text-md-start">
-        <img src="logo-2.png" alt="logo-2" />
+        <img src="../logo-2.png" alt="logo-2" />
         <div className="row py-3">
           <div className="col col-md-3 text-white">
             <p>
