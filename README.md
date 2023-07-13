@@ -1,38 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hire Job Website App
 
-## Getting Started
+Frontend for Hire Job built with NextJS.
 
-First, run the development server:
+![NextJS](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge)
 
-```bash
+Hire Job Front-End is a website interface for Hire Job Back-End.
+
+- Search for Jobs
+- Page Contain List of Jobs
+- Profile User and Edit Profile User
+- Hire / Contact Page
+- Pages for Authentication and Authorization
+
+## Tech
+
+Hire Job Front-End uses a number of open source projects to work properly:
+
+- [NextJS](https://nextjs.org/) - frontend framework
+
+And of course Hire Job Front-End itself is open source with a [public repository](https://github.com/alkarim99/hire-job-fe-next) on GitHub.
+
+## Installation
+
+Hire Job Front-End able to run on your local, download this repo and open it using visual studio code, and run the terminal like below.
+
+```sh
+cd hire_job
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshot
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Landing Page <br>
+   <img src="./screenshots/1-Landing-Page.png" width="540"/>
+   <img src="./screenshots/2-Landing-Page.png" width="540"/>
+   <img src="./screenshots/3-Landing-Page.png" width="540"/>
+2. Job Lists <br>
+   <img src="./screenshots/7-Job-Lists.png" width="540"/>
+3. Contact / Hire Page <br>
+   <img src="./screenshots/8-Contact.png" width="540"/>
+4. Profile Page <br>
+   <img src="./screenshots/6-Profile.png" width="540"/>
+5. Edit Profile Page <br>
+   <img src="./screenshots/9-Edit-Profile.png" width="540"/>
+6. Edit Photo Profile <br>
+   <img src="./screenshots/10-Edit-Photo-Profile.png" width="540"/>
+7. Edit Experience <br>
+   <img src="./screenshots/11-Edit-Experience.png" width="540"/>
+8. Login Page <br>
+   <img src="./screenshots/4-Login.png" width="540"/>
+9. Register Page <br>
+   <img src="./screenshots/5-Register.png" width="540"/>

@@ -10,10 +10,10 @@ import Tagskill from "@/components/tagskill"
 import Listexperience from "@/components/listexperience"
 import axios from "axios"
 
-function Profile() {
+function Profile(profile) {
   const router = useRouter()
   const state = useSelector((state) => state)
-  const [profile, setProfile] = React.useState([])
+  // const [profile, setProfile] = React.useState([])
   const [userData, setUserData] = React.useState("")
 
   React.useEffect(() => {
@@ -26,7 +26,7 @@ function Profile() {
         const data = response?.data?.data
         for (let i = 0; i < data?.length; i++) {
           if (data[i].id === id) {
-            setProfile(data[i])
+            // setProfile(data[i])
             return
           }
         }
@@ -139,11 +139,21 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts
   //   const res = await fetch("https://.../posts")
   //   const posts = await res.json()
+  let profile = []
+  const {
+    data: { data },
+  } = await axios.get("https://hire-job.onrender.com/v1/job/all")
+  const id = parseInt(router?.query?.id)
+  for (let i = 0; i < data?.length; i++) {
+    if (data[i].id === id) {
+      profile = data[i]
+    }
+  }
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
-    props: {},
+    props: { profile },
     revalidate: 10,
   }
 }
