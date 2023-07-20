@@ -33,22 +33,22 @@ npm run dev
 ## Screenshot
 
 1. Landing Page <br>
-   <img src="./screenshots/1-Landing-Page.png" width="540"/>
-   <img src="./screenshots/2-Landing-Page.png" width="540"/>
-   <img src="./screenshots/3-Landing-Page.png" width="540"/>
+   <img src="./screenshots/1-Landing-Page-Edit.png" width="540"/>
+   <img src="./screenshots/2-Landing-Page-Edit.png" width="540"/>
+   <img src="./screenshots/3-Landing-Page-Edit.png" width="540"/>
 2. Job Lists <br>
-   <img src="./screenshots/7-Job-Lists.png" width="540"/>
+   <img src="./screenshots/7-Job-Lists-Edit.png" width="540"/>
 3. Contact / Hire Page <br>
-   <img src="./screenshots/8-Contact.png" width="540"/>
+   <img src="./screenshots/8-Contact-Edit.png" width="540"/>
 4. Profile Page <br>
-   <img src="./screenshots/6-Profile.png" width="540"/>
+   <img src="./screenshots/6-Profile-Edit.png" width="540"/>
 5. Edit Profile Page <br>
-   <img src="./screenshots/9-Edit-Profile.png" width="540"/>
-6. Edit Photo Profile <br>
-   <img src="./screenshots/10-Edit-Photo-Profile.png" width="540"/>
+   <img src="./screenshots/9-Edit-Profile-Edit.png" width="540"/>
+6. Edit Photo Profile and Skills <br>
+   <img src="./screenshots/10-Edit-Photo-Profile-Skills-Edit.png" width="540"/>
 7. Edit Experience <br>
-   <img src="./screenshots/11-Edit-Experience.png" width="540"/>
+   <img src="./screenshots/11-Edit-Experience-Edit.png" width="540"/>
 8. Login Page <br>
-   <img src="./screenshots/4-Login.png" width="540"/>
+   <img src="./screenshots/4-Login-Edit.png" width="540"/>
 9. Register Page <br>
-   <img src="./screenshots/5-Register.png" width="540"/>
+   <img src="./screenshots/5-Register-Edit.png" width="540"/>
