@@ -34,7 +34,7 @@ npm run dev
 
 1. Landing Page <br>
    <img src="./screenshots/1-Landing-Page-Edit.png" width="540"/>
-   <img src="./screenshots/2-Landing-Page-Edit.png" width="540"/>
+   <img src="./screenshots/2-Landing-Page.png" width="540"/>
    <img src="./screenshots/3-Landing-Page-Edit.png" width="540"/>
 2. Job Lists <br>
    <img src="./screenshots/7-Job-Lists-Edit.png" width="540"/>
