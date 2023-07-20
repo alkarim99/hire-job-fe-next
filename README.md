@@ -20,6 +20,9 @@ Hire Job Front-End uses a number of open source projects to work properly:
 
 And of course Hire Job Front-End itself is open source with a [public repository](https://github.com/alkarim99/hire-job-fe-next) on GitHub.
 
+[Deploy Link](https://hire-job-fe-next.vercel.app) <br>
+[Backend repository](https://github.com/alkarim99/hire_job_be)
+
 ## Installation
 
 Hire Job Front-End able to run on your local, download this repo and open it using visual studio code, and run the terminal like below.
