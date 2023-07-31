@@ -18,7 +18,8 @@ function Hire() {
   const [description, setDescription] = React.useState("")
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    console.log(state?.authSlice?.userData)
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
       setProfile(state?.authSlice?.userData)

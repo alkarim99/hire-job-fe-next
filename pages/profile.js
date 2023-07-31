@@ -15,7 +15,7 @@ function Profile() {
   const [userData, setUserData] = React.useState("")
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
       setUserData(state?.authSlice?.userData)
@@ -49,7 +49,7 @@ function Profile() {
                   userData?.domicile
                 ) : (
                   <span className="text-danger fw-bold">
-                    Edit Profile untuk Menambahkan Domisili
+                    Edit Profil untuk Menambahkan Domisili
                   </span>
                 )}
               </p>
@@ -58,12 +58,12 @@ function Profile() {
                   userData?.description
                 ) : (
                   <div class="alert alert-warning" role="alert">
-                    Edit Profile untuk Menambahkan Deskripsi
+                    Edit Profil untuk Menambahkan Deskripsi
                   </div>
                 )}
               </p>
               <Link href="/editprofile" className="btn btn-primary btn-lg my-4">
-                Edit Profile
+                Edit Profil
               </Link>
               {/* <Link href="/hire" className="btn btn-primary btn-lg my-4">
                 Hire
@@ -78,7 +78,7 @@ function Profile() {
                   })
                 ) : (
                   <div class="alert alert-warning" role="alert">
-                    Edit Profile untuk Menambahkan Skill
+                    Edit Profil untuk Menambahkan Skill
                   </div>
                 )}
               </div>
@@ -108,7 +108,7 @@ function Profile() {
                     })
                   ) : (
                     <div class="alert alert-warning" role="alert">
-                      Edit Profile untuk Menambahkan Pengalaman Kerja
+                      Edit Profil untuk Menambahkan Pengalaman Kerja
                     </div>
                   )}
                 </div>

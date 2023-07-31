@@ -1,29 +1,36 @@
-import { configureStore } from "@reduxjs/toolkit"
-import counterSlice from "./reducers/counterSlice"
-import authSlice from "./reducers/authSlice"
-import storage from "redux-persist/lib/storage"
-import { persistReducer, persistStore } from "redux-persist"
 import thunk from "redux-thunk"
+import persistors from "./persistor"
+import { persistReducer } from "redux-persist"
+import { persistStore } from "redux-persist"
+import { legacy_createStore as createStore, applyMiddleware } from "redux"
+import rootReducer from "./reducers"
 
 // const persistConfig = {
 //   key: "root",
 //   storage,
+//   version: 1,
 // }
 
-// const reducer = combineReducers({
+// const reducers = combineReducers({
 //   counterSlice,
 //   authSlice,
 // })
 
-// const persistedReducer = persistReducer(persistConfig, reducer)
+// const persistedReducer = persistReducer(persistConfig, reducers)
 
-export const store = configureStore({
-  reducer: {
-    counterSlice,
-    authSlice,
-  },
-  // reducer: persistedReducer,
-  // middleware: [thunk],
-})
+// export const store = configureStore({
+//   reducer: persistedReducer,
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// })
 
-// export const persistor = persistStore(store)
+// combine reducers with persistors
+const persistedReducer = persistReducer(persistors, rootReducer)
+
+// export multiple
+export const store = createStore(persistedReducer, applyMiddleware(thunk))
+export const persistor = persistStore(store)

@@ -10,27 +10,16 @@ import Tagskill from "@/components/tagskill"
 import Listexperience from "@/components/listexperience"
 import axios from "axios"
 
-function Profile(profile) {
+function Profile({ data }) {
   const router = useRouter()
   const state = useSelector((state) => state)
-  // const [profile, setProfile] = React.useState([])
-  const [userData, setUserData] = React.useState("")
+  const [profile, setProfile] = React.useState([])
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
-      setUserData(state?.authSlice?.userData)
-      const id = parseInt(router?.query?.id)
-      axios.get("https://hire-job.onrender.com/v1/job/all").then((response) => {
-        const data = response?.data?.data
-        for (let i = 0; i < data?.length; i++) {
-          if (data[i].id === id) {
-            // setProfile(data[i])
-            return
-          }
-        }
-      })
+      setProfile(data)
     }
   }, [])
 
@@ -78,7 +67,7 @@ function Profile(profile) {
                 href={`/hire/${router?.query?.id}`}
                 className="btn btn-primary btn-lg my-4"
               >
-                Hire
+                Rekrut
               </Link>
               <div className="my-4">
                 <h4 className="fw-bold">Skill</h4>
@@ -90,7 +79,7 @@ function Profile(profile) {
                   })
                 ) : (
                   <div class="alert alert-warning" role="alert">
-                    Belum Ada Menambahkan Skill
+                    Belum Ada Skill
                   </div>
                 )}
               </div>
@@ -135,37 +124,11 @@ function Profile(profile) {
   )
 }
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts
-  //   const res = await fetch("https://.../posts")
-  //   const posts = await res.json()
-  let profile = []
-  const {
-    data: { data },
-  } = await axios.get("https://hire-job.onrender.com/v1/job/all")
-  const id = parseInt(router?.query?.id)
-  for (let i = 0; i < data?.length; i++) {
-    if (data[i].id === id) {
-      profile = data[i]
-    }
-  }
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: { profile },
-    revalidate: 10,
-  }
-}
-
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const {
     data: { data },
   } = await axios.get("https://hire-job.onrender.com/v1/job/all")
-  // console.log(data)
-  //   const posts = await res.json()
-  const users = [1, 2, 3]
 
   // Get the paths we want to pre-render based on posts
   const paths = data.map((row) => ({
@@ -175,6 +138,24 @@ export async function getStaticPaths() {
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return { paths, fallback: "blocking" }
+}
+
+// This function gets called at build time
+export async function getStaticProps({ params }) {
+  // Call an external API endpoint to get posts
+  const {
+    data: { data },
+  } = await axios.get(
+    `https://hire-job.onrender.com/v1/job/detail/${params.id}`
+  )
+  // const jobDetail = data.json()
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      data,
+    },
+  }
 }
 
 export default Profile

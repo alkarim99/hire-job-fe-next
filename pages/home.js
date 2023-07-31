@@ -9,25 +9,22 @@ import ButtonPagination from "@/components/buttonPagination"
 import React from "react"
 import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
+import { getCookie } from "cookies-next"
 
-export default function Home() {
+export default function Home(props) {
   const router = useRouter()
   const state = useSelector((state) => state)
   const [userData, setUserData] = React.useState("")
   let pages = []
   const [currentPage, setCurrentPage] = React.useState(1)
-  const [totalPage, setTotalPage] = React.useState("")
-  const [jobs, setJobs] = React.useState([])
+  const [totalPage, setTotalPage] = React.useState(props?.total_page)
+  const [jobs, setJobs] = React.useState(props?.data)
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
       setUserData(state?.authSlice?.userData)
-      axios.get("https://hire-job.onrender.com/v1/job").then((response) => {
-        setTotalPage(response?.data?.data?.total_page)
-        setJobs(response?.data?.data?.rows)
-      })
     }
   }, [])
 
@@ -36,10 +33,11 @@ export default function Home() {
   }
 
   const getData = (pageNumber) => {
-    console.log(pageNumber)
+    setCurrentPage(pageNumber)
     axios
       .get(`https://hire-job.onrender.com/v1/job?page=${pageNumber}`)
       .then((response) => {
+        // console.log(response?.data?.data?.rows)
         setJobs(response?.data?.data?.rows)
       })
   }
@@ -112,33 +110,24 @@ export default function Home() {
                   Previous
                 </button>
               </li>
-              {/* {pages.map((page, index) => {
-                return (
-                  <>
-                    <li className="page-item">
-                      <button className="page-link">{page}</button>
-                    </li>
-                  </>
-                )
-              })} */}
               {pages.map((page, index) => {
-                return <ButtonPagination page={page} key={index} />
-              })}
-              {/* {pages.map((page, index) => {
                 return (
-                  <>
-                    <li className="page-item">
-                      <Link
-                        className="page-link"
-                        href=""
-                        onClick={getData(page)}
-                      >
-                        {page}
-                      </Link>
-                    </li>
-                  </>
+                  <li
+                    className="page-item"
+                    key={index}
+                    onClick={() => getData(page)}
+                  >
+                    <a
+                      className={`page-link ${
+                        page == currentPage ? "active" : ""
+                      }`}
+                      href="#"
+                    >
+                      {page}
+                    </a>
+                  </li>
                 )
-              })} */}
+              })}
               <li className="page-item">
                 <button className="page-link" onClick={handleIncrement}>
                   Next
@@ -151,4 +140,23 @@ export default function Home() {
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps({ req, res }) {
+  const token = getCookie("token", { req, res })
+  // Fetch data from external API
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    }
+  }
+  const response = await axios.get("https://hire-job.onrender.com/v1/job")
+  const data = response?.data?.data?.rows
+  const total_page = response?.data?.data?.total_page
+
+  // Pass data to the page via props
+  return { props: { data, total_page } }
 }

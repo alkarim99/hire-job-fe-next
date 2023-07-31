@@ -6,6 +6,7 @@ import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import { addAuth } from "@/store/reducers/authSlice"
+import { setCookie } from "cookies-next"
 
 function Login() {
   const router = useRouter()
@@ -13,28 +14,32 @@ function Login() {
   const dispatch = useDispatch()
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
+  const [isLoading, SetIsLoading] = React.useState(false)
 
   React.useEffect(() => {
-    if (Object.keys(state.authSlice.userData).length != 0) {
+    if (state?.authSlice?.token != "") {
       router.push("/profile")
     }
   })
 
   const handleLogin = () => {
+    SetIsLoading(true)
     axios
       .post("https://hire-job.onrender.com/v1/auth/login", {
         email,
         password,
       })
       .then((response) => {
+        const data = response?.data?.data
         Swal.fire({
           title: "Login Success!",
           text: "Login Success! Redirect to App...",
           icon: "success",
+        }).then(() => {
+          setCookie("token", data.token)
+          dispatch(addAuth(data))
+          router.push("/profile")
         })
-        dispatch(addAuth(response?.data?.data?.user))
-        localStorage.setItem("token", response?.data?.data?.token)
-        router.push("/profile")
       })
       .catch((error) => {
         Swal.fire({
@@ -43,6 +48,9 @@ function Login() {
             error?.response?.data?.messages ?? "Something wrong in our App!",
           icon: "error",
         })
+      })
+      .finally(() => {
+        SetIsLoading(false)
       })
   }
 
@@ -90,21 +98,21 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <p className="text-end">
+              {/* <p className="text-end">
                 <Link
                   className="text-decoration-none text-black fw-semibold"
                   href="#"
                 >
                   Lupa kata sandi?
                 </Link>
-              </p>
+              </p> */}
               <div className="d-grid mb-3">
                 <button
                   type="submit"
                   className="btn btn-warning"
                   onClick={handleLogin}
                 >
-                  Masuk
+                  {isLoading ? "Loading..." : "Masuk"}
                 </button>
               </div>
             </form>

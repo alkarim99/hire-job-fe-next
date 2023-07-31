@@ -10,10 +10,10 @@ function Register() {
   const state = useSelector((state) => state)
 
   React.useEffect(() => {
-    if (Object.keys(state.authSlice.userData).length != 0) {
+    if (state?.authSlice?.token != "") {
       router.push("/profile")
     }
-  }, [])
+  })
 
   const [fullname, setFullname] = React.useState("")
   const [email, setEmail] = React.useState("")
@@ -40,7 +40,6 @@ function Register() {
             text: "Registration Success! Please Login",
             icon: "success",
           }).then(() => {
-            // navigate("/login")
             router.push("/login")
           })
         })

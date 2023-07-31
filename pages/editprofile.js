@@ -46,8 +46,8 @@ function Editprofile() {
       .patch("https://hire-job.onrender.com/v1/profile", payload)
       .then(() => {
         Swal.fire({
-          title: "Edit Profile Success!",
-          text: "Edit Profile Success!",
+          title: "Sukses Edit Profile!",
+          text: "Sukses Edit Profile!",
           icon: "success",
         })
         axios
@@ -84,8 +84,8 @@ function Editprofile() {
       })
       .then(() => {
         Swal.fire({
-          title: "Add Skills Success!",
-          text: "Add Skills Success!",
+          title: "Sukses Menambahkan Skill!",
+          text: "Sukses Menambahkan Skill!",
           icon: "success",
         })
         axios
@@ -143,8 +143,8 @@ function Editprofile() {
       })
       .then(() => {
         Swal.fire({
-          title: "Add New Job Experience Success!",
-          text: "Add New Job Experience Success!",
+          title: "Sukses Menambahkan Pengalaman Kerja Baru!",
+          text: "Sukses Menambahkan Pengalaman Kerja Baru!",
           icon: "success",
         })
         axios
@@ -184,8 +184,8 @@ function Editprofile() {
       })
       .then(() => {
         Swal.fire({
-          title: "Update Photo Success!",
-          text: "Update Photo Success!",
+          title: "Sukses Mengubah Foto Profil!",
+          text: "Sukses Mengubah Foto Profil!",
           icon: "success",
         })
         axios
@@ -242,7 +242,7 @@ function Editprofile() {
                     ) : (
                       <span className="text-danger fw-bold">
                         {" "}
-                        Edit Profile to Add Domicile
+                        Edit Profil untuk Menambahkan Domisili
                       </span>
                     )}
                   </p>
@@ -253,19 +253,19 @@ function Editprofile() {
                   className="btn btn-primary"
                   onClick={handleUpdateProfile}
                 >
-                  Save
+                  Simpan
                 </button>
               </div>
               <div className="row mb-3">
                 <Link href="/profile" className="btn btn-light">
-                  Back
+                  Kembali
                 </Link>
               </div>
             </div>
             <div className="col" id="profile">
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
-                  <h4>Profile</h4>
+                  <h4>Profil</h4>
                   <hr />
                   <form
                     onSubmit={(e) => {
@@ -274,7 +274,7 @@ function Editprofile() {
                   >
                     <div className="mb-3">
                       <label for="fullname" className="form-label text-muted">
-                        Fullname
+                        Nama Lengkap
                       </label>
                       <input
                         type="text"
@@ -289,7 +289,7 @@ function Editprofile() {
                     </div>
                     <div className="mb-3">
                       <label for="phone" className="form-label text-muted">
-                        Phone Number
+                        No. Handphone
                       </label>
                       <input
                         type="text"
@@ -304,7 +304,7 @@ function Editprofile() {
                     </div>
                     <div className="mb-3">
                       <label for="job_title" className="form-label text-muted">
-                        Job Title
+                        Pekerjaan
                       </label>
                       <input
                         type="text"
@@ -319,7 +319,7 @@ function Editprofile() {
                     </div>
                     <div className="mb-3">
                       <label for="domicile" className="form-label text-muted">
-                        Domicile
+                        Domisili
                       </label>
                       <input
                         type="text"
@@ -334,7 +334,7 @@ function Editprofile() {
                     </div>
                     <div className="mb-3">
                       <label for="company" className="form-label text-muted">
-                        Company
+                        Perusahaan
                       </label>
                       <input
                         type="text"
@@ -349,7 +349,7 @@ function Editprofile() {
                     </div>
                     <div class="mb-3">
                       <label for="description" class="form-label text-muted">
-                        Description
+                        Deskripsi
                       </label>
                       <textarea
                         class="form-control"
@@ -366,7 +366,7 @@ function Editprofile() {
               </div>
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
-                  <h4>Profile Picture</h4>
+                  <h4>Foto Profil</h4>
                   <hr />
                   <img
                     className="img-fluid rounded-circle"
@@ -395,7 +395,7 @@ function Editprofile() {
                           className="btn btn-warning"
                           onClick={handleUpdateProfilePicture}
                         >
-                          Save
+                          Simpan
                         </button>
                       </div>
                     </div>
@@ -414,7 +414,7 @@ function Editprofile() {
                     })
                   ) : (
                     <div class="alert alert-warning" role="alert">
-                      Add skill here
+                      Tambah skill
                     </div>
                   )}
                   <form
@@ -439,7 +439,7 @@ function Editprofile() {
                           className="btn btn-warning"
                           onClick={handleAddSkill}
                         >
-                          Save
+                          Simpan
                         </button>
                       </div>
                     </div>
@@ -448,7 +448,7 @@ function Editprofile() {
               </div>
               <div className="row mb-3">
                 <div className="col bg-white rounded-4 py-5 px-md-5">
-                  <h4>Job Experience</h4>
+                  <h4>Pengalaman Kerja</h4>
                   <hr />
                   <form
                     onSubmit={(e) => {
@@ -457,13 +457,13 @@ function Editprofile() {
                   >
                     <div className="mb-3 ">
                       <label for="position" class="form-label text-muted">
-                        Position
+                        Jabatan
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="position"
-                        placeholder="Position"
+                        placeholder="Jabatan"
                         onChange={(e) => {
                           setJobExperiencePosition(e.target.value)
                         }}
@@ -472,13 +472,13 @@ function Editprofile() {
                     <div className="row mb-3 ">
                       <div className="col">
                         <label for="company" class="form-label text-muted">
-                          Company
+                          Perusahaan
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="company"
-                          placeholder="Company"
+                          placeholder="Perusahaan"
                           onChange={(e) => {
                             setJobExperienceCompany(e.target.value)
                           }}
@@ -486,7 +486,7 @@ function Editprofile() {
                       </div>
                       <div className="col">
                         <label for="date" class="form-label text-muted">
-                          Date
+                          Tanggal
                         </label>
                         <input
                           type="date"
@@ -500,7 +500,7 @@ function Editprofile() {
                     </div>
                     <div class="mb-3">
                       <label for="description" class="form-label text-muted">
-                        Description
+                        Deskripsi
                       </label>
                       <textarea
                         class="form-control"
@@ -513,7 +513,7 @@ function Editprofile() {
                     </div>
                     <div class="mb-3">
                       <label for="photo" class="form-label">
-                        Photo
+                        Foto
                       </label>
                       <input
                         class="form-control"
@@ -529,7 +529,7 @@ function Editprofile() {
                       className="d-grid btn btn-outline-warning"
                       onClick={handleAddJobExperience}
                     >
-                      Add Job Experience
+                      Tambah Pengalaman
                     </button>
                   </form>
                 </div>

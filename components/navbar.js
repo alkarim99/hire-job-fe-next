@@ -1,8 +1,13 @@
 import React from "react"
 import Link from "next/link"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { addAuth } from "@/store/reducers/authSlice"
+import { useRouter } from "next/router"
+import { deleteCookie } from "cookies-next"
 
 function Navbar() {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const state = useSelector((state) => state)
   const [lengthData, setLengthData] = React.useState("")
   const [userData, setUserData] = React.useState("")
@@ -48,7 +53,15 @@ function Navbar() {
                   className="btn btn-outline-primary fw-bold"
                   href=""
                   onClick={() => {
-                    window.location.href = "/"
+                    dispatch(
+                      addAuth({
+                        user: {},
+                        token: "",
+                      })
+                    )
+                    deleteCookie("token")
+                    // router.push("/login")
+                    window.location.href = "/login"
                   }}
                 >
                   Logout

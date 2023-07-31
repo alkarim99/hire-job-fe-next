@@ -10,31 +10,24 @@ import Swal from "sweetalert2"
 
 import Tagskill from "@/components/tagskill"
 
-function Hire() {
+function Hire({ data }) {
   const router = useRouter()
   const state = useSelector((state) => state)
   const [profile, setProfile] = React.useState("")
   const [subject, setSubject] = React.useState("")
   const [description, setDescription] = React.useState("")
+  const [isLoading, SetIsLoading] = React.useState(false)
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
-      const id = parseInt(router?.query?.id)
-      axios.get("https://hire-job.onrender.com/v1/job/all").then((response) => {
-        const data = response?.data?.data
-        for (let i = 0; i < data?.length; i++) {
-          if (data[i].id === id) {
-            setProfile(data[i])
-            return
-          }
-        }
-      })
+      setProfile(data)
     }
   }, [])
 
   const handleContact = () => {
+    SetIsLoading(true)
     axios
       .post(`https://hire-job.onrender.com/v1/contact/${profile?.id}`, {
         subject,
@@ -63,6 +56,9 @@ function Hire() {
           icon: "error",
         })
       })
+      .finally(() => {
+        SetIsLoading(false)
+      })
   }
 
   return (
@@ -88,7 +84,7 @@ function Hire() {
                   profile?.domicile
                 ) : (
                   <span className="text-danger fw-bold">
-                    Edit Profile untuk Menambahkan Domisili
+                    Belum Ada Domisili
                   </span>
                 )}
               </p>
@@ -97,7 +93,7 @@ function Hire() {
                   profile?.description
                 ) : (
                   <div class="alert alert-warning" role="alert">
-                    Edit Profile untuk Menambahkan Deskripsi
+                    Belum Ada Deskripsi
                   </div>
                 )}
               </p>
@@ -111,7 +107,7 @@ function Hire() {
                   })
                 ) : (
                   <div class="alert alert-warning" role="alert">
-                    Edit Profile untuk Menambahkan Skill
+                    Belum Ada Skill
                   </div>
                 )}
               </div>
@@ -125,13 +121,13 @@ function Hire() {
               >
                 <div className="mb-3">
                   <label for="subject" className="form-label text-muted">
-                    Subject
+                    Subjek
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="subject"
-                    placeholder="Subject"
+                    placeholder="Subjek"
                     onChange={(e) => {
                       setSubject(e.target.value)
                     }}
@@ -139,12 +135,13 @@ function Hire() {
                 </div>
                 <div class="mb-3">
                   <label for="description" class="form-label text-muted">
-                    Description
+                    Deskripsi
                   </label>
                   <textarea
                     class="form-control"
                     id="description"
                     rows="3"
+                    placeholder="Deskripsi"
                     onChange={(e) => {
                       setDescription(e.target.value)
                     }}
@@ -152,7 +149,7 @@ function Hire() {
                 </div>
                 <div className="d-grid">
                   <button className="btn btn-warning" onClick={handleContact}>
-                    Hire
+                    {isLoading ? "Loading..." : "Rekrut"}
                   </button>
                 </div>
               </form>
@@ -163,6 +160,40 @@ function Hire() {
       <Footer />
     </>
   )
+}
+
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const {
+    data: { data },
+  } = await axios.get("https://hire-job.onrender.com/v1/job/all")
+
+  // Get the paths we want to pre-render based on posts
+  const paths = data.map((row) => ({
+    params: { id: row.id.toString() },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: "blocking" }
+}
+
+// This function gets called at build time
+export async function getStaticProps({ params }) {
+  // Call an external API endpoint to get posts
+  const {
+    data: { data },
+  } = await axios.get(
+    `https://hire-job.onrender.com/v1/job/detail/${params.id}`
+  )
+  // const jobDetail = data.json()
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      data,
+    },
+  }
 }
 
 export default Hire

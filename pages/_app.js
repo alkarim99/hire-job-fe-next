@@ -1,34 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Head from "next/head"
 
-import { persistor, store } from "@/store"
-import { Provider } from "react-redux"
-import { PersistGate } from "redux-persist/integration/react"
 import Script from "next/script"
+
+import { Provider, useSelector } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
+import { persistStore } from "redux-persist"
+import { store, persistor } from "@/store"
+
 import axios from "axios"
 
 import "styles/scss/global.scss"
 import "styles/scss/auth.scss"
 
 function App({ Component, pageProps }) {
-  // const state = useSelector((state) => state)
-  useEffect(() => {
-    require("bootstrap/dist/js/bootstrap.bundle.min.js")
-  }, [])
-  axios.interceptors.request.use(
-    (config) => {
-      if (localStorage.getItem("token")) {
-        config.headers["Authorization"] = `Bearer ${localStorage.getItem(
-          "token"
-        )}`
-      }
-      return config
-    },
-    (error) => {
-      Promise.reject(error)
-    }
-  )
   return (
     <>
       <Script
@@ -52,12 +38,34 @@ function App({ Component, pageProps }) {
       <Head>
         <title>Hire Job App</title>
       </Head>
-      <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
-        <Component {...pageProps} />
-        {/* </PersistGate> */}
-      </Provider>
+      <PersistGate loading={null} persistor={persistor}>
+        <Provider store={store}>
+          <RunApp pageProps={pageProps} Component={Component} />
+        </Provider>
+      </PersistGate>
     </>
   )
 }
+
+function RunApp({ Component, pageProps }) {
+  const state = useSelector((state) => state)
+  useEffect(() => {
+    require("bootstrap/dist/js/bootstrap.bundle.min.js")
+    axios.interceptors.request.use(
+      (config) => {
+        if (state?.authSlice?.token != null) {
+          config.headers["Authorization"] = `Bearer ${state?.authSlice?.token}`
+        }
+        return config
+      },
+      (error) => {
+        console.log(error)
+        Promise.reject(error)
+      }
+    )
+  }, [])
+
+  return <Component {...pageProps} />
+}
+
 export default App

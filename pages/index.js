@@ -13,6 +13,8 @@ export default function Index() {
     dispatch(increment())
   }
 
+  // console.log(state?.authSlice)
+
   // throw new Error("Error api")
 
   return (
@@ -49,7 +51,7 @@ export default function Index() {
           <div className="row flex-column-reverse flex-md-row-reverse justify-content-between align-items-center vh-100 py-4">
             <div className="col col-md-5 text-center text-md-start">
               <h2 className="mb-4 fw-bold">
-                Kenapa harus mencari tallent di peworld
+                Kenapa harus mencari tallent di Peworld
               </h2>
               <ul
                 style={{
@@ -163,7 +165,7 @@ export default function Index() {
       <div className="container mb-5 pb-5">
         <div className="d-none d-md-flex row flex-column-reverse flex-md-row justify-content-between align-items-center vh-100 py-4 text-center">
           <div className="col">
-            <h2 className="mb-4 fw-bold">Their opinion about peworld</h2>
+            <h2 className="mb-4 fw-bold">Pendapat Mereka Tentang Peworld</h2>
             <div className="row justify-content-center gap-4">
               <div className="card" style={{ width: "18rem" }}>
                 <div className="card-body">
@@ -194,7 +196,7 @@ export default function Index() {
                     }}
                   />
                   <h5 className="card-title fw-semibold">Niall Horan</h5>
-                  <p className="text-muted">Web Developer</p>
+                  <p className="text-muted">Mobile Developer</p>
                   <p className="card-text">
                     Peworld menyiapkan kami yang bukan dari background IT
                     menjadi siap di dunia kerja IT
@@ -212,7 +214,7 @@ export default function Index() {
                     }}
                   />
                   <h5 className="card-title fw-semibold">Louis Tomlinson</h5>
-                  <p className="text-muted">Web Developer</p>
+                  <p className="text-muted">Fullstack Developer</p>
                   <p className="card-text">
                     Ilmu yang disampaikan relevan dengan dunia kerja.
                   </p>
