@@ -46,11 +46,11 @@ npm run dev
 4. Profile Page <br>
    <img src="./screenshots/6-Profile-Edit.png" width="540"/>
 5. Edit Profile Page <br>
-   <img src="./screenshots/9-Edit-Profile-Edit.png" width="540"/>
+   <img src="./screenshots/9-Edit-Profile.png" width="540"/>
 6. Edit Photo Profile and Skills <br>
-   <img src="./screenshots/10-Edit-Photo-Profile-Skills-Edit.png" width="540"/>
+   <img src="./screenshots/10-Edit-Photo-Profile-Skills.png" width="540"/>
 7. Edit Experience <br>
-   <img src="./screenshots/11-Edit-Experience-Edit.png" width="540"/>
+   <img src="./screenshots/11-Edit-Experience.png" width="540"/>
 8. Login Page <br>
    <img src="./screenshots/4-Login-Edit.png" width="540"/>
 9. Register Page <br>
