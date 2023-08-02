@@ -30,7 +30,7 @@ function Listexperience(props) {
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.messages
         if (Object.keys(errors).length != 0) {
           text = ""
@@ -55,14 +55,6 @@ function Listexperience(props) {
         <div className="col-10">
           <h4 className="mb-0 fw-semibold d-flex justify-content-between">
             {experience.position}
-            {userData?.id == userId ? (
-              <button
-                class="btn-close p-0 m-0"
-                onClick={handleDeleteJob}
-              ></button>
-            ) : (
-              ""
-            )}
           </h4>
           <p className="fw-light m-0">{experience.company}</p>
           <p className="text-muted">{experience.date}</p>

@@ -22,8 +22,10 @@ function Register() {
   const [job_title, setJobTitle] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [passwordConfirm, setPasswordConfirm] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const handleRegiter = () => {
+    setIsLoading(true)
     if (password == passwordConfirm) {
       axios
         .post(`https://hire-job.onrender.com/v1/auth/register`, {
@@ -47,15 +49,20 @@ function Register() {
           Swal.fire({
             title: "Error!",
             text:
-              error?.response?.data?.message ?? "Something wrong in our App!",
+              error?.response?.data?.message ?? "Kesalahan Pada Aplikasi Kami!",
             icon: "error",
           })
+        })
+        .finally(() => {
+          setIsLoading(false)
         })
     } else {
       Swal.fire({
         title: "Error!",
         text: "Password and Confirm Password is different!",
         icon: "error",
+      }).finally(() => {
+        setIsLoading(false)
       })
     }
   }
@@ -170,7 +177,7 @@ function Register() {
                   className="btn btn-warning"
                   onClick={handleRegiter}
                 >
-                  Daftar
+                  {isLoading ? "Loading..." : "Daftar"}
                 </button>
               </div>
             </form>

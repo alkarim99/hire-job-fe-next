@@ -40,7 +40,7 @@ function Hire() {
         })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
         if (Object.keys(errors).length != 0) {
           text = ""

@@ -51,6 +51,7 @@ function RunApp({ Component, pageProps }) {
   const state = useSelector((state) => state)
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js")
+    console.log(state?.authSlice?.token)
     axios.interceptors.request.use(
       (config) => {
         if (state?.authSlice?.token != null) {
@@ -59,7 +60,6 @@ function RunApp({ Component, pageProps }) {
         return config
       },
       (error) => {
-        console.log(error)
         Promise.reject(error)
       }
     )

@@ -9,11 +9,11 @@ function Navbar() {
   const router = useRouter()
   const dispatch = useDispatch()
   const state = useSelector((state) => state)
-  const [lengthData, setLengthData] = React.useState("")
+  const [token, setToken] = React.useState("")
   const [userData, setUserData] = React.useState("")
 
   React.useEffect(() => {
-    setLengthData(Object.keys(state?.authSlice?.userData).length)
+    setToken(state?.authSlice?.token)
     setUserData(state?.authSlice?.userData)
   })
 
@@ -41,7 +41,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <div className="d-flex gap-2 flex-column flex-lg-row mt-4 align-items-center mt-lg-0">
-            {lengthData != 0 ? (
+            {token != "" ? (
               <>
                 <Link className="btn btn-transparent" key={1} href="">
                   <img src="../bell.png" alt="bell" />
@@ -60,15 +60,15 @@ function Navbar() {
                       })
                     )
                     deleteCookie("token")
-                    // router.push("/login")
-                    window.location.href = "/login"
+                    router.push("/login")
+                    // window.location.href = "/login"
                   }}
                 >
                   Logout
                 </Link>
                 <Link className="btn btn-transparent" href="/profile">
                   <img
-                    src={userData.photo}
+                    src={userData?.photo}
                     className="img-fluid rounded-circle"
                     alt="user-pp"
                     style={{ width: "3vw" }}

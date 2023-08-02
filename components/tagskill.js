@@ -8,8 +8,10 @@ import { addAuth } from "@/store/reducers/authSlice"
 
 function Tagskill(props) {
   const { skillName, index } = props
+  const state = useSelector((state) => state)
   const router = useRouter()
   const dispatch = useDispatch()
+  const [userData, setUserData] = React.useState("")
 
   const handleDeleteSkill = () => {
     axios
@@ -23,18 +25,21 @@ function Tagskill(props) {
         axios
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
-            dispatch(addAuth(response?.data?.data))
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
-        // const errors = error?.response?.data?.messages
-        // if (Object.keys(errors).length != 0) {
-        //   text = ""
-        //   for (const key in errors) {
-        //     text += `${key}: ${errors[key].message} \n`
-        //   }
-        // }
+        let text = "Kesalahan Pada Aplikasi Kami!"
+        const errors = error?.response?.data?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
         Swal.fire({
           title: "Error!",
           text: text,

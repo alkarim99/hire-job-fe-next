@@ -112,7 +112,6 @@ function Profile({ data }) {
                       Belum Ada Pengalaman Kerja
                     </div>
                   )}
-                  <hr />
                 </div>
               </div>
             </div>

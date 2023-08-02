@@ -10,6 +10,7 @@ import Swal from "sweetalert2"
 
 import { addAuth } from "@/store/reducers/authSlice"
 import Tagskill from "@/components/tagskill"
+import Listexperience from "@/components/listexperience"
 import FormData from "form-data"
 
 function Editprofile() {
@@ -17,9 +18,10 @@ function Editprofile() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
   const [userData, setUserData] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
 
   React.useEffect(() => {
-    if (Object.keys(state?.authSlice?.userData).length == 0) {
+    if (state?.authSlice?.token == "") {
       router.push("/login")
     } else {
       setUserData(state?.authSlice?.userData)
@@ -34,6 +36,7 @@ function Editprofile() {
   const [description, setDescription] = React.useState(userData?.description)
 
   const handleUpdateProfile = () => {
+    setIsLoading(true)
     const payload = {
       fullname: fullname ?? userData?.fullname,
       company: company ?? userData?.company,
@@ -53,12 +56,14 @@ function Editprofile() {
         axios
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
-            dispatch(addAuth(response?.data?.data))
-            setUserData(response?.data?.data)
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
         if (Object.keys(errors).length != 0) {
           text = ""
@@ -72,11 +77,15 @@ function Editprofile() {
           icon: "error",
         })
       })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const [skill, setSkill] = React.useState("")
 
   const handleAddSkill = () => {
+    setIsLoading(true)
     const skills = new Array(skill)
     axios
       .post("https://hire-job.onrender.com/v1/skills", {
@@ -91,12 +100,14 @@ function Editprofile() {
         axios
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
-            dispatch(addAuth(response?.data?.data))
-            setUserData(response?.data?.data)
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
         if (Object.keys(errors).length != 0) {
           text = ""
@@ -110,6 +121,48 @@ function Editprofile() {
           icon: "error",
         })
       })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  const handleDeleteSkill = (index) => {
+    setIsLoading(true)
+    axios
+      .delete(`https://hire-job.onrender.com/v1/skills/${index}`)
+      .then(() => {
+        Swal.fire({
+          title: "Delete Skills Success!",
+          text: "Delete Skills Success!",
+          icon: "success",
+        })
+        axios
+          .get("https://hire-job.onrender.com/v1/profile")
+          .then((response) => {
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
+          })
+      })
+      .catch((error) => {
+        let text = "Kesalahan Pada Aplikasi Kami!"
+        const errors = error?.response?.data?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
+        Swal.fire({
+          title: "Error!",
+          text: text,
+          icon: "error",
+        })
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const [jobExperiencePosition, setJobExperiencePosition] = React.useState("")
@@ -120,6 +173,7 @@ function Editprofile() {
   const [jobExperiencePhoto, setJobExperiencePhoto] = React.useState("")
 
   const handleAddJobExperience = () => {
+    setIsLoading(true)
     const arrayDate = jobExperienceDate.split("-")
     const uploadDate = arrayDate[1].concat("-", arrayDate[0])
     const payload = {
@@ -150,12 +204,14 @@ function Editprofile() {
         axios
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
-            dispatch(addAuth(response?.data?.data))
-            setUserData(response?.data?.data)
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
         if (Object.keys(errors).length != 0) {
           text = ""
@@ -169,11 +225,54 @@ function Editprofile() {
           icon: "error",
         })
       })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  const handleDeleteJob = (id) => {
+    setIsLoading(true)
+    axios
+      .delete(`https://hire-job.onrender.com/v1/job/${id}`)
+      .then(() => {
+        Swal.fire({
+          title: "Delete Skills Success!",
+          text: "Delete Skills Success!",
+          icon: "success",
+        })
+        axios
+          .get("https://hire-job.onrender.com/v1/profile")
+          .then((response) => {
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
+          })
+      })
+      .catch((error) => {
+        let text = "Kesalahan Pada Aplikasi Kami!"
+        const errors = error?.response?.messages
+        if (Object.keys(errors).length != 0) {
+          text = ""
+          for (const key in errors) {
+            text += `${key}: ${errors[key].message} \n`
+          }
+        }
+        Swal.fire({
+          title: "Error!",
+          text: error?.response?.data?.messages ?? text,
+          icon: "error",
+        })
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const [profilePicture, setProfilePicture] = React.useState("")
 
   const handleUpdateProfilePicture = () => {
+    setIsLoading(true)
     const formData = new FormData()
     formData.append("photo", profilePicture)
     axios
@@ -191,12 +290,14 @@ function Editprofile() {
         axios
           .get("https://hire-job.onrender.com/v1/profile")
           .then((response) => {
-            dispatch(addAuth(response?.data?.data))
-            setUserData(response?.data?.data)
+            const newData = response?.data?.data
+            const token = state?.authSlice?.token
+            dispatch(addAuth({ user: newData, token }))
+            setUserData(newData)
           })
       })
       .catch((error) => {
-        let text = "Something wrong in our App!"
+        let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
         if (Object.keys(errors).length != 0) {
           text = ""
@@ -209,6 +310,9 @@ function Editprofile() {
           text: text,
           icon: "error",
         })
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -253,7 +357,7 @@ function Editprofile() {
                   className="btn btn-primary"
                   onClick={handleUpdateProfile}
                 >
-                  Simpan
+                  {isLoading ? "Loading..." : "Simpan"}
                 </button>
               </div>
               <div className="row mb-3">
@@ -370,7 +474,7 @@ function Editprofile() {
                   <hr />
                   <img
                     className="img-fluid rounded-circle"
-                    src={userData.photo}
+                    src={userData?.photo}
                     alt="pp"
                     style={{ width: "10vw" }}
                   />
@@ -395,7 +499,7 @@ function Editprofile() {
                           className="btn btn-warning"
                           onClick={handleUpdateProfilePicture}
                         >
-                          Simpan
+                          {isLoading ? "Loading..." : "Simpan"}
                         </button>
                       </div>
                     </div>
@@ -409,7 +513,29 @@ function Editprofile() {
                   {userData?.skills?.length != 0 ? (
                     userData?.skills?.map((skill, index) => {
                       return (
-                        <Tagskill skillName={skill} key={index} index={index} />
+                        // <Tagskill skillName={skill} key={index} index={index} />
+                        <>
+                          <div
+                            className="btn btn-outline-warning text-white m-1 fw-semibold"
+                            href="#"
+                            style={{
+                              backgroundColor: "rgba(251, 176, 23, 0.6)",
+                            }}
+                            key={index}
+                          >
+                            {skill}{" "}
+                            {router.pathname == "/editprofile" ? (
+                              <button
+                                class="btn-close p-0 m-0"
+                                onClick={() => {
+                                  handleDeleteSkill(index)
+                                }}
+                              ></button>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </>
                       )
                     })
                   ) : (
@@ -439,7 +565,7 @@ function Editprofile() {
                           className="btn btn-warning"
                           onClick={handleAddSkill}
                         >
-                          Simpan
+                          {isLoading ? "Loading..." : "Simpan"}
                         </button>
                       </div>
                     </div>
@@ -526,12 +652,57 @@ function Editprofile() {
                     </div>
                     <hr />
                     <button
-                      className="d-grid btn btn-outline-warning"
+                      className="d-grid btn btn-outline-warning mb-4"
                       onClick={handleAddJobExperience}
                     >
-                      Tambah Pengalaman
+                      {isLoading ? "Loading..." : "Tambah Pengalaman"}
                     </button>
                   </form>
+                  <hr />
+                  {userData?.job_history?.length != 0 ? (
+                    userData?.job_history?.map((item, index) => {
+                      return (
+                        // <>
+                        //   <Listexperience
+                        //     userId={userData?.id}
+                        //     experience={item}
+                        //     key={index}
+                        //   />
+                        //   <hr />
+                        // </>
+                        <>
+                          <div className="row" key={index}>
+                            <div className="col text-center align-self-center">
+                              <img
+                                src="../suitcase.png"
+                                alt="suitcase"
+                                width={"40vw"}
+                              />
+                            </div>
+                            <div className="col-10">
+                              <h4 className="mb-0 fw-semibold d-flex justify-content-between">
+                                {item?.position}
+                                <button
+                                  class="btn-close p-0 m-0"
+                                  onClick={() => {
+                                    handleDeleteJob(item?.id)
+                                  }}
+                                ></button>
+                              </h4>
+                              <p className="fw-light m-0">{item?.company}</p>
+                              <p className="text-muted">{item?.date}</p>
+                              <p>{item?.description}</p>
+                            </div>
+                          </div>
+                          <hr />
+                        </>
+                      )
+                    })
+                  ) : (
+                    <div class="alert alert-warning" role="alert">
+                      Belum Ada Pengalaman Kerja
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

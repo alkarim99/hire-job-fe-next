@@ -32,8 +32,8 @@ function Login() {
       .then((response) => {
         const data = response?.data?.data
         Swal.fire({
-          title: "Login Success!",
-          text: "Login Success! Redirect to App...",
+          title: "Login Berhasil!",
+          text: "Login Berhasil!",
           icon: "success",
         }).then(() => {
           setCookie("token", data.token)
@@ -45,7 +45,7 @@ function Login() {
         Swal.fire({
           title: "Error!",
           text:
-            error?.response?.data?.messages ?? "Something wrong in our App!",
+            error?.response?.data?.messages ?? "Kesalahan Pada Aplikasi Kami!",
           icon: "error",
         })
       })
