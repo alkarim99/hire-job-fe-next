@@ -40,7 +40,7 @@ npm run dev
    <img src="./screenshots/2-Landing-Page.png" width="540"/>
    <img src="./screenshots/3-Landing-Page-Edit.png" width="540"/>
 2. Job Lists <br>
-   <img src="./screenshots/7-Job-Lists.png" width="540"/>
+   <img src="./screenshots/7-Job-Lists-Edit.png" width="540"/>
 3. Contact / Hire Page <br>
    <img src="./screenshots/8-Contact-Edit.png" width="540"/>
 4. Profile Page <br>
