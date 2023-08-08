@@ -19,6 +19,8 @@ export default function Home(props) {
   const [currentPage, setCurrentPage] = React.useState(1)
   const [totalPage, setTotalPage] = React.useState(props?.total_page)
   const [jobs, setJobs] = React.useState(props?.data)
+  const [keyword, setKeyword] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
 
   React.useEffect(() => {
     if (state?.authSlice?.token == "") {
@@ -37,8 +39,9 @@ export default function Home(props) {
     axios
       .get(`https://hire-job.onrender.com/v1/job?page=${pageNumber}`)
       .then((response) => {
-        // console.log(response?.data?.data?.rows)
+        console.log(response?.data?.data)
         setJobs(response?.data?.data?.rows)
+        setTotalPage(response?.data?.data?.total_page)
       })
   }
 
@@ -68,6 +71,24 @@ export default function Home(props) {
       })
   }
 
+  const handleSearch = () => {
+    if (keyword.trim()) {
+      setIsLoading(true)
+      axios
+        .get(`https://hire-job.onrender.com/v1/job/filter?keyword=${keyword}`)
+        .then(({ data: { data } }) => {
+          setTotalPage(0)
+          setJobs(data ?? [])
+          setCurrentPage(1)
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+    } else {
+      getData(1)
+    }
+  }
+
   return (
     <>
       <main className="mb-5 pb-5">
@@ -76,24 +97,45 @@ export default function Home(props) {
           <h1 className="container fw-bold py-4 text-white">Top Jobs</h1>
         </div>
         <div className="container py-4">
-          {/* <div className="input-group mb-3 py-4">
-            <input
-              type="text"
-              className="form-control py-3"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-            <button
-              className="btn btn-primary px-5"
-              type="button"
-              id="button-addon2"
-            >
-              Search
-            </button>
-          </div> */}
+          <from onSubmit={(e) => e.preventDefault()}>
+            <div className="input-group mb-3 py-4">
+              <input
+                type="text"
+                className="form-control py-3"
+                placeholder="Search name, job, skills or location..."
+                aria-label="Search"
+                aria-describedby="button-addon2"
+                onChange={(e) => {
+                  setKeyword(e.target.value.toLowerCase())
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch()
+                  }
+                }}
+              />
+              <button
+                className="btn btn-primary px-5"
+                type="submit"
+                id="button-addon2"
+                onClick={handleSearch}
+              >
+                {isLoading ? "Loading..." : "Search"}
+              </button>
+            </div>
+          </from>
           <div className="card">
             <ul className="list-group">
+              {jobs.length == 0 ? (
+                <div
+                  class="alert alert-warning my-4 align-self-center"
+                  role="alert"
+                >
+                  Tidak ditemukan kata pencarian &quot;{keyword}&quot;
+                </div>
+              ) : (
+                ""
+              )}
               {jobs.map((user) => {
                 return userData?.id != user.id ? (
                   <Listjob user={user} key={user.id} />
@@ -103,38 +145,42 @@ export default function Home(props) {
               })}
             </ul>
           </div>
-          <nav aria-label="Page navigation example">
-            <ul className="pagination pagination-lg justify-content-center py-3">
-              <li className="page-item">
-                <button className="page-link" onClick={handleDecrement}>
-                  Previous
-                </button>
-              </li>
-              {pages.map((page, index) => {
-                return (
-                  <li
-                    className="page-item"
-                    key={index}
-                    onClick={() => getData(page)}
-                  >
-                    <a
-                      className={`page-link ${
-                        page == currentPage ? "active" : ""
-                      }`}
-                      href="#"
+          {pages.length > 0 ? (
+            <nav aria-label="Page navigation example">
+              <ul className="pagination pagination-lg justify-content-center py-3">
+                <li className="page-item">
+                  <button className="page-link" onClick={handleDecrement}>
+                    Previous
+                  </button>
+                </li>
+                {pages.map((page, index) => {
+                  return (
+                    <li
+                      className="page-item"
+                      key={index}
+                      onClick={() => getData(page)}
                     >
-                      {page}
-                    </a>
-                  </li>
-                )
-              })}
-              <li className="page-item">
-                <button className="page-link" onClick={handleIncrement}>
-                  Next
-                </button>
-              </li>
-            </ul>
-          </nav>
+                      <a
+                        className={`page-link ${
+                          page == currentPage ? "active" : ""
+                        }`}
+                        href="#"
+                      >
+                        {page}
+                      </a>
+                    </li>
+                  )
+                })}
+                <li className="page-item">
+                  <button className="page-link" onClick={handleIncrement}>
+                    Next
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          ) : (
+            ""
+          )}
         </div>
       </main>
       <Footer />
