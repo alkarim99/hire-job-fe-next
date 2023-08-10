@@ -147,11 +147,16 @@ export default function Home(props) {
           </div>
           {pages.length > 0 ? (
             <nav aria-label="Page navigation example">
-              <ul className="pagination pagination-lg justify-content-center py-3">
+              <ul className="pagination pagination-sm justify-content-center py-3">
                 <li className="page-item">
-                  <button className="page-link" onClick={handleDecrement}>
-                    Previous
-                  </button>
+                  <a
+                    class="page-link"
+                    href="#"
+                    aria-label="Previous"
+                    onClick={handleDecrement}
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
                 </li>
                 {pages.map((page, index) => {
                   return (
@@ -172,9 +177,14 @@ export default function Home(props) {
                   )
                 })}
                 <li className="page-item">
-                  <button className="page-link" onClick={handleIncrement}>
-                    Next
-                  </button>
+                  <a
+                    class="page-link"
+                    href="#"
+                    aria-label="Next"
+                    onClick={handleIncrement}
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
                 </li>
               </ul>
             </nav>

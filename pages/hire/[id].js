@@ -66,7 +66,7 @@ function Hire({ data }) {
       <main className="mb-5 pb-5">
         <Navbar />
         <div className="container py-4">
-          <div className="row px-3 px-md-5 gap-5">
+          <div className="row px-3 px-md-5 gap-5 flex-column flex-md-row">
             <div className="col col-md-4 bg-white d-flex justify-content-center flex-column p-4 rounded-4">
               <img
                 className="img-fluid w-50 align-self-center my-4 rounded-circle"
@@ -112,7 +112,7 @@ function Hire({ data }) {
                 )}
               </div>
             </div>
-            <div className="col py-5 px-md-5" id="profile">
+            <div className="col" id="profile">
               <h2 className="fw-bold">Hubungi {profile?.fullname}</h2>
               <form
                 onSubmit={(e) => {

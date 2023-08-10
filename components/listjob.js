@@ -51,7 +51,7 @@ function Listjob(props) {
               )}
             </div>
           </div>
-          <div className="col col-md-2 text-end">
+          <div className="col col-md-2 text-end d-grid">
             <Link className="btn btn-primary btn-lg" href={`/job/${user.id}`}>
               Lihat Profile
             </Link>
