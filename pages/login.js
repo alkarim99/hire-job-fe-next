@@ -16,11 +16,11 @@ function Login() {
   const [password, setPassword] = React.useState("")
   const [isLoading, SetIsLoading] = React.useState(false)
 
-  React.useEffect(() => {
-    if (state?.authSlice?.token != "") {
-      router.push("/profile")
-    }
-  })
+  // React.useEffect(() => {
+  //   if (state?.authSlice?.token != "") {
+  //     router.push("/profile")
+  //   }
+  // })
 
   const handleLogin = () => {
     SetIsLoading(true)
