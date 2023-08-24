@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { addAuth } from "@/store/reducers/authSlice"
 import { useRouter } from "next/router"
 import { deleteCookie } from "cookies-next"
+import { getCookie } from "cookies-next"
 
 function Navbar() {
   const router = useRouter()
@@ -13,7 +14,7 @@ function Navbar() {
   const [userData, setUserData] = React.useState("")
 
   React.useEffect(() => {
-    setToken(state?.authSlice?.token)
+    setToken(getCookie("token"))
     setUserData(state?.authSlice?.userData)
   })
 

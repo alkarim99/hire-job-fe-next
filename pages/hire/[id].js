@@ -9,6 +9,7 @@ import axios from "axios"
 import Swal from "sweetalert2"
 
 import Tagskill from "@/components/tagskill"
+import { sendContact } from "@/lib/api"
 
 function Hire({ data }) {
   const router = useRouter()
@@ -26,21 +27,17 @@ function Hire({ data }) {
     }
   }, [])
 
-  const handleContact = () => {
+  const handleContact = async () => {
     SetIsLoading(true)
-    axios
-      .post(`https://hire-job.onrender.com/v1/contact/${profile?.id}`, {
-        subject,
-        description,
-      })
-      .then(() => {
+    const emailTo = profile?.email
+    sendContact({ subject, description, emailTo })
+      .then(
         Swal.fire({
           title: "Contact Success!",
           text: "Contact Success!",
           icon: "success",
         })
-        router.push(`/job/${profile?.id}`)
-      })
+      )
       .catch((error) => {
         let text = "Kesalahan Pada Aplikasi Kami!"
         const errors = error?.response?.data?.messages
@@ -59,6 +56,38 @@ function Hire({ data }) {
       .finally(() => {
         SetIsLoading(false)
       })
+    SetIsLoading(false)
+    // axios
+    //   .post(`https://hire-job.onrender.com/v1/contact/${profile?.id}`, {
+    //     subject,
+    //     description,
+    //   })
+    //   .then(() => {
+    //     Swal.fire({
+    //       title: "Contact Success!",
+    //       text: "Contact Success!",
+    //       icon: "success",
+    //     })
+    //     router.push(`/job/${profile?.id}`)
+    //   })
+    //   .catch((error) => {
+    //     let text = "Kesalahan Pada Aplikasi Kami!"
+    //     const errors = error?.response?.data?.messages
+    //     if (Object.keys(errors).length != 0) {
+    //       text = ""
+    //       for (const key in errors) {
+    //         text += `${key}: ${errors[key].message} \n`
+    //       }
+    //     }
+    //     Swal.fire({
+    //       title: "Error!",
+    //       text: text,
+    //       icon: "error",
+    //     })
+    //   })
+    //   .finally(() => {
+    //     SetIsLoading(false)
+    //   })
   }
 
   return (
